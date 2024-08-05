@@ -11,8 +11,12 @@
             "id": "7dc8c88bce82df9b",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "Docker Docs/Engine/Overview.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Docker Docs/Engine/Overview.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Docker Docs/Engine/Overview.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +124,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Docker Docs/Engine/Overview.md"
+              }
             }
           }
         ]
@@ -139,5 +147,12 @@
     }
   },
   "active": "7dc8c88bce82df9b",
-  "lastOpenFiles": []
+  "lastOpenFiles": [
+    "Untitled.md",
+    "Docker Docs/Engine/Overview.md",
+    "Docker Docs/Engine",
+    "Docker Docs",
+    "Fireship JS/Further Reading.md",
+    "Fireship JS/prototype chaining.md"
+  ]
 }
