@@ -23,3 +23,16 @@ https://docs.docker.com/storage/
 - Good for:
 	- Sharing config files from the host machine
 	- sharing source or build artifacts
+
+#### Storage Drivers
+- A Docker Docker image is made up of several layers
+- Each layer except the last one is a read-only layer
+- Commands that modify a filesystem create a layer
+- When you create a new container you add a new layer ontop of the underlying ones. Thi slayer is often called the container layer
+- All changes made to the running container are written to the writable container layer
+
+![[container-layers.webp]]
+
+- All writes to a container add new or modify existing data stored in the writable layer, the underlying image remains unchanged
+
+https://docs.docker.com/storage/storagedriver/#container-size-on-disk
