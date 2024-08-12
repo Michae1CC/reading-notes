@@ -12,5 +12,8 @@
 #### Written Design Docs
 - Extreme Programming advocates using no extra design docs at all, let the code speak for itself - pg 32
 - Documents should give insight to large-scale structures and to focus attention on core elements. It can clarify design intent in a case where the programming language does not support a straight forward implementation of a concept. Written documents should compliment code and the verbal communication
+- Analysis models is the product of analyzing the business domain to organize its concepts without nay consideration of the part it will play in a software system.
 
-pg 34
+
+
+pg 45
