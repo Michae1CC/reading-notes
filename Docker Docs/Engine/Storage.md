@@ -35,4 +35,6 @@ https://docs.docker.com/storage/
 
 - All writes to a container add new or modify existing data stored in the writable layer, the underlying image remains unchanged
 
-https://docs.docker.com/storage/storagedriver/#container-size-on-disk
+#### Copy-on-write strategy
+- If a file or directory exists in a lower layer within the image, and another layer (including the writable layer) needs read access to it, it just uses the existing file.
+- The first time another layer needs to modify the file (when building or running the container), the file is copied into that layer and modified.
