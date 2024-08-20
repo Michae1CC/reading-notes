@@ -36,9 +36,27 @@ require('./logger').customMessage = function () {
 - This is usually not great practice since what if two modules tried to set the same global variable?
 
 ### ECMAScript modules
+
+Further reading: https://www.typescriptlang.org/docs/handbook/modules/theory.html
+
 - Node will consider every `.js` file to be written using the CommonJS syntax by default, therefore, if we use the ESM syntax  inside a `.js` file, the interpreter will throw an error.
 - There are several ways to tell the `Node.js` interpreter to consider a give module as an ES module rather than a CommonJS module:
 	- Give the module file the extension `.mjs`
 	- Add to the nearest parent package.json a field called `type` with a value of `module`
 - es module allows us to export functionality through the `export` keyword
-- It's good practice to stick with named exports, especially when you to expose more than one functionality 
+- It's good practice to stick with named exports, especially when you to expose more than one functionality
+- Module Identifiers
+	- Relative specifiers like `./logger.js`
+	- Absolute specifiers `file:///opt/nodejs/config.js`
+	- Bare specifiers `http`, represent modules available in the `node_modules` folder and generally installed through a package manger
+	- Deep import specifiers like `fastify/lib/logger.js`
+
+### Loading phases
+- From the entry point the the interpreter will find and follow all the import statements recursively in a depth-first fashion
+	- Phase 1 - Find all the imports and recursively load the content of every module from the respective file
+	- Phase 2 - For every exported entity, keep a named reference in memory, but don't assign any value just yet. Also, references are created for all import and export statements tracking the dependency relationship between them.
+	- Phase 3 - Node finally executes the code so that all the previously instantiated entities can get an actual value.
+
+pg 49
+
+- In Es modules, when an entity is imported in the scope, the binding to its original value cannot be changed (read-only binding) unless the bound value changes within the scope of the original module itself.
