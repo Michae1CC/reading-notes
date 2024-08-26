@@ -9,3 +9,10 @@ Week of 19/08
 	- Domain Layer - Responsible for representing concepts of the business, information about the business situation and business rules. State that reflects the business situation is controlled and used here, even though the technical details of storing it are delegated to the infra
 	- Infra Layer - Provide generic technical capabilities that support the higher layers: message sending for the application, persistence of the domain, drawing widgets for the UI, etc. The infra layer may also support the pattern of interactions between the four layers through an architectural framework.
 - Partition a complex program into layers, develop a design within each layer that is cohesive and is dependent only on the layers below. Follow standard architectural patterns to provide loose coupling to the layers above. Concentration the all the code related to the domain model in one layer and isolate it from the user interface, app, and infra code. This allows a model to evolve rich enough and clear enough to effectively capture essential business knowledge and put it to work.
+
+#### Relating Layers
+- Layers are meant to be loosely coupled, with design dependencies in only one direction.
+- When an object of a lower level needs to communicate upward (beyond answering a direct query) we need another mechanism, drawing on architectural patterns for relating layers such as callbacks or observers. - pg 55
+
+### A model expressed in software
+- Aspects of the domain that are more clearly expressed as actions/operations are often best expressed as services. A service is something that will be done for a client on request - pg 60

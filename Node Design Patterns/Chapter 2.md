@@ -60,3 +60,23 @@ Further reading: https://www.typescriptlang.org/docs/handbook/modules/theory.htm
 pg 49
 
 - In Es modules, when an entity is imported in the scope, the binding to its original value cannot be changed (read-only binding) unless the bound value changes within the scope of the original module itself.
+- We can't change the bindings of the default export of an existing module from another module, but, if one of these bindings is an object, we can still mutate the object itself by reassigning some of the object properties - p 56
+- *named exports* involves assigning the values we want to make public to properties of the object referenced by exports.
+- reassigning the whole `module.exports` variable to a function. The main strength of this pattern is the fact that it allows you expose only a single functionality which provides a clear entry point for the module, making it simpler to use and understand.
+```javascript
+// file logger.js
+module.exports = (message) => {
+	console.log(`info: ${message}`)
+}
+module.exports.verbose = (message) => {
+	console.log(`verbose: ${message}`)
+}
+
+// file main.js
+const logger = require('./logger')
+logger('This is an informational message')
+logger.verbose('This is a verbose message')
+```
+
+- In ESM, some important references (`require, exports, module.exports, __filename, __dirname`). If we try to get any of them in a ES module, we will get a ReferenceError - pg 60
+- In the global scope of ES module, this is `undefined`, while in CommonJS, `this` is a reference to exports.
