@@ -25,6 +25,7 @@ https://docs.docker.com/storage/
 	- sharing source or build artifacts
 
 #### Storage Drivers
+- A storage driver is used to store image layers and to store the writable layer of a container
 - A Docker Docker image is made up of several layers
 - Each layer except the last one is a read-only layer
 - Commands that modify a filesystem create a layer
@@ -38,3 +39,5 @@ https://docs.docker.com/storage/
 #### Copy-on-write strategy
 - If a file or directory exists in a lower layer within the image, and another layer (including the writable layer) needs read access to it, it just uses the existing file.
 - The first time another layer needs to modify the file (when building or running the container), the file is copied into that layer and modified.
+
+https://docs.docker.com/engine/storage/drivers/
