@@ -41,3 +41,9 @@ https://docs.docker.com/storage/
 - The first time another layer needs to modify the file (when building or running the container), the file is copied into that layer and modified.
 
 https://docs.docker.com/engine/storage/drivers/
+
+#### Copying make containers more efficient
+
+https://docs.docker.com/engine/storage/drivers/#copying-makes-containers-efficient
+
+- Containers that write a lot of data consume more space than containers that since most write operations consume new space in the container's writable top layer.

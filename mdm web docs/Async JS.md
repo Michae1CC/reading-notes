@@ -60,3 +60,18 @@ doOperation();
 
 - when callbacks are nested like this it can get very hard to handle errors
 - for this reason most modern async APIs don't use callbacks and instead use `Promise`
+
+
+### How to use Promises
+- A promise is an object returned by an async function, which represents the current state of the operation.
+- A promise can be in one of the following states:
+	- pending: The promise has been created and the async function it's associated with has not succeeded of failed yet
+	- fulfilled: the async function has succeeded. When the promise is fulfilled, its `then()` handler is called
+	- rejected: the async function has failed. When a promise is rejected, it's catch handler is called
+- The promise returned by `Promise.all` is
+	- fulfilled when and if all the promises in the array are fulfilled. In this case, then `then()` handler is called with an array of all the responses in the same order they where passed in
+	- rejected if **any** of the promises in the array are rejected. In this case, the `catch()` handler is called with the error thrown by the promise that rejected.
+- Using `await` on an async function forces the operations to be completed in series.
+
+
+https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Introducing_workers
