@@ -14,5 +14,19 @@ Week of 19/08
 - Layers are meant to be loosely coupled, with design dependencies in only one direction.
 - When an object of a lower level needs to communicate upward (beyond answering a direct query) we need another mechanism, drawing on architectural patterns for relating layers such as callbacks or observers. - pg 55
 
-### A model expressed in software
+#### A model expressed in software
 - Aspects of the domain that are more clearly expressed as actions/operations are often best expressed as services. A service is something that will be done for a client on request - pg 60
+
+#### Associations
+-  There are at least three ways of making associations more tractable
+	- Imposition of direction
+	- Addition of qualifier
+	- Elimination of non-essential associations
+- Eliminate associations if they are not required
+- Some objects are not defined primarily by their attributes. They represent a thread of identity that runs through time and often across distinct representations. Sometimes an objects must be matched with another object event though attributes differ. An object must be distinguished from other objects event though they might have the same attributes. Mistaken identity can lead to data corruption. Objects defined primarily by its identity is called an 'entity'
+- Their class definitions, responsibilities, attributes and associations should revolve around who they are rather than the particular attributes they carry.
+
+#### Modeling Entities
+- Entities are defined by their identities. Attributes are attached and changed. Therefore strip the entity object's definition down to the most intrinsic characteristics, particularly those that identify it, or are commonly used to find or match it. Separate other characteristic into other objects associated with the core entity.
+- Each entity must have an operational way of establishing its identity with another object; distinguishable even from another object with the same descriptive attributes.
+- When there is no true unique key made of the attributes of an object, the most common solution is to attach to each instance a symbol that is unique within the class. Once the symbol is obtained and stored as an attribute of the entity, it is designated immutable

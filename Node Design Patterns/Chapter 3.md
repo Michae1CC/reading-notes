@@ -1,2 +1,6 @@
 ### Callbacks and Events
-- A callback is a function invoked by by the runtime with the result of an aysnc operation 
+- A callback is a function invoked by by the runtime with the result of an async operation - pg 64
+- In functional programming, continuation style passing refers to when a callback is passed as an argument to another function and is invoked with the result when the operation completes.
+- Every time the event loop takes a full trip we call it a tick. When we pass a function to `process.nextTick()`, we instruct the engine to invoke this function at the end of the current operation, before the next event loop tick starts. The event loop is busy processing the current function code. When this operation ends, the JS engine runs all the functions passed to nextTick calls during that operation. It's the way we can tell the JS engine to process a function async (after the current function), but as soon as possible, not to queue it.
+- Calling `setTimeout(() => {}, 0)` will execute the function at the end of the next tick, much later than using `nextTick` which prioritizes the call and executes it just before the beginning of the next tick.
+pg 72
