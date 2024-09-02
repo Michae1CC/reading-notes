@@ -30,3 +30,19 @@ Week of 19/08
 - Entities are defined by their identities. Attributes are attached and changed. Therefore strip the entity object's definition down to the most intrinsic characteristics, particularly those that identify it, or are commonly used to find or match it. Separate other characteristic into other objects associated with the core entity.
 - Each entity must have an operational way of establishing its identity with another object; distinguishable even from another object with the same descriptive attributes.
 - When there is no true unique key made of the attributes of an object, the most common solution is to attach to each instance a symbol that is unique within the class. Once the symbol is obtained and stored as an attribute of the entity, it is designated immutable
+
+- Since the most conspicuous in a model are usually entities, it is important to track their identity
+- IMPORTANT: Tracking the identity of entities is essential, but attaching identity to other objects can hurt system performance, add analytical work, and muddle the model by making all objects look the same. Software design is a constant battle with complexity. We must make distinctions so that any special handling is applied only where necessary. However, if we think of this category of object as just the absence of identity, we haven't added much to our toolbox or vocabulary. In fact, these objects have characteristics of their own, and their own significance to the model. These are the objects that describe the nature of things. pg - 70
+
+#### Value Objects
+- An object that represents a descriptive aspect of the domain that has no conceptual identity is called a _value object_. Value objects are instantiated to represent elements of the design that we care about only for what they are, not who they are.
+- Colours are are an example of value objects
+- Value Objects can reference entities
+- Value Objects are often passed are parameters in messages between other objects. They are frequently transient, created for an operation and then discarded
+- IMPORTANT: When you care only about the attributes of an element of the model, classify it as a VALUE OBJECT. Making it express the meaning of attributes it conveys and give it related functionality. Treat the Value Object as immutable. Don't give it any identity and avoid the design complexities necessary to maintain entities - pg 71
+- Value objects tend to be numerous. If a value object are considered interchangeable, the a group of value objects can be replaced with a single with a reference to an immutable value object this could be a good improvement for optimization.
+- The economy of copying versus sharing depends on the implementation environment. While copies may clog up the system with huge numbers of items, sharing can slow a distributed system. When a copy is passed between two machines, one message is sent and a copy is live independently on the receiving machine. But if a single instance is being shared, only a reference is passed, requiring a message back to the object for any interaction.
+- Sharing is best restricted to cases where it is most valuable and least troublesome (pg 72):
+	- When saving space or object count in the database is critical
+	- When communication overhead is low (central server)
+	- When the shared object is strictly immutable
