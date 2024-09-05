@@ -16,3 +16,12 @@ https://docs.docker.com/engine/network/
 - Containers use the same DNS servers as the host by default, but you can override with `--dns`
 - By default, containers inherit the DNS settings as defined in the `/etc/resolv.conf` config file
 - Containers that attach to a custom network use Docker's embedded DNS server. The embedded DNS server forwards external DNS lookups to the DNS servers configured on the host.
+
+### Network drivers
+
+https://docs.docker.com/engine/network/drivers/bridge/
+#### Bridge
+- Uses a software bridge which lets containers connected to the same network communicate, while providing isolation from containers that aren't connected to the bridge network.
+- The docker bridge driver automatically installs rules in the host machine so that containers on different bridge networks can't communicate directly with each other.
+- When no host address is given in port publishing options like `-p 80`, the default is to make the containers port 80 available on all host addresses, IPv4 and IPv6.
+- If you do not specify a network using the `--network` flag, and you do specify a network drive, your container is connected to the default `bridge` network by default. Containers connected to the default `bridge` network can communicate, but only by IP address unless the `--link` flag is used.

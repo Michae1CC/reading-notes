@@ -75,3 +75,5 @@ doOperation();
 
 
 https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Introducing_workers
+
+- Truly parallel tasks can be created with `Worker`
