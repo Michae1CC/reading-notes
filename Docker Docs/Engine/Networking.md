@@ -25,3 +25,18 @@ https://docs.docker.com/engine/network/drivers/bridge/
 - The docker bridge driver automatically installs rules in the host machine so that containers on different bridge networks can't communicate directly with each other.
 - When no host address is given in port publishing options like `-p 80`, the default is to make the containers port 80 available on all host addresses, IPv4 and IPv6.
 - If you do not specify a network using the `--network` flag, and you do specify a network drive, your container is connected to the default `bridge` network by default. Containers connected to the default `bridge` network can communicate, but only by IP address unless the `--link` flag is used.
+
+#### Overlay
+https://docs.docker.com/engine/network/drivers/overlay/
+- The overlay network driver creates a distributed network among multiple Docker daemon hosts
+- You can create `overlay` networks using `docker network create`, in the same way you would create a user-defined bridged network.
+- To join an overlay network run `docker run --network multi-host-network busybox sh`
+- Publishing ports of a container on an overlay network opens the ports to other containers on the same network. Containers are discoverable by doing a DNS lookup using the container name.
+
+#### Host
+https://docs.docker.com/engine/network/drivers/host/
+- The container's network stack isn't isolated from the Docker host and the container doesn't get its own IP-address allocated
+- `-p` and `--publish` options are ignored
+- Useful for:
+	- optimising performance
+	- container needs to handle a large range of ports
