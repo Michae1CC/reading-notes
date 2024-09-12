@@ -46,3 +46,45 @@ Week of 19/08
 	- When saving space or object count in the database is critical
 	- When communication overhead is low (central server)
 	- When the shared object is strictly immutable
+- Cases that favor allowing value objects to be mutable
+	- If the value is frequently changed
+	- If the object creation or deletion is expensive
+	- If replacement (rather than modification) will disturb clustering
+	- If there is not much sharing of values, or if such sharing is forgone to improve clustering or for some other reason
+- If a value's implementation is to be mutable, then it _must not_ be shared
+- bi-directional associations with value objects are meaningless
+
+### Services
+
+- Typical mistake is to give up on fitting the behaviour into an appropriate object, gradually slipping towards procedural programming. But when we force an operation into an object that doesn't fit the object's definition, the object loses its conceptual clarity and becomes hard to understand or refactor. These operations often draw together too many domain objects, coordinating them and putting them into action.
+- IMPORTANT: Some concepts from the domain aren't natural to model as objects. Forcing them required domain functionality to be assigned as a responsibility of an Entity or Value either distorts the definition of model based object or adds meaningless artificial objects.
+- A _Service_ is an operation offered as an interface that stands alone in the model, without encapsulating state as Entities and Value Objects do.
+- It is purely defined in terms of what it can do for the client.
+- Tends to be named for an activity, rather than an entity (a verb rather than a noun)
+- Should not strip the Entities and Value Objects of all their behaviour
+- A good service has three characteristics:
+	- The operation relates to a domain concept that is not a natural part of an Entity or Value Object
+	- The interface is defined in terms of other elements of the domain model
+	- The operation is stateless (any client can use any instance of the Service without regard to the instance's history)
+- When a significant process or transformation in the domain is not a natural responsibility of an Entity or Value Object, add an operation to the model as a standalone interface declared as a Service. Define the interface in terms of the language of the model and make sure the operation name is part of the Ubiquitous Language. Make the Service stateless. - pg 76
+- Many Services are built on top of populations of Entities and Values behaving like scripts that organize the potential of the domain to actually get something done.
+- It usually awkward to make a direct interface between a domain object and external resources.
+- Medium-grain stateless services can be easier to reuse in large systems because they encapsulate significant functionality behind a simple interface. Also, fine-grained objects lead lead to inefficient messaging in a distributed system. pg 77
+- Fine grained domain objects can contribute to knowledge leaks from the domain into the application layer where the domain object's behaviour is coordinated
+
+##### Questions
+- How are services uses implemented (refers to a single class (or even a single function) or an entire application?). One example was having a service that controls a transfer between two bank accounts (a domain level service). Another example was send transfer confirmations via email, where external services are 'dressed up' using the facade design pattern to take inputs in terms of domain model.
+- "Fine grained domain objects can contribute to knowledge leaks from the domain into the application layer", what do they mean by that?
+- Would security be treated separately, to the domain model? What about something like a datamapper version or some sort encryption key that is associated with a business (perhaps used to sign responses)?
+
+
+### Modules
+
+- IMPORTANT: Everyone uses Modules, but few treat them as a full-fledged part of the model. Code gets broken down by all sorts of categories, from aspects of the technical architecture to dev work assignments. Even devs who refactor a lot, tend to content themselves with Modules conceived early in the project. It is a truism that there should be low coupling between modules and high cohesion within them. Explanations of the coupling between modules and cohesion within them. Explanations of coupling and cohesion tend to make them sound like technical metrics, to be judged mechanically based on the distributions of associations and interactions. Yet it isn't just code being divided into modules, but concepts. There is a limit to how many things a person can think about at once (hence low coupling). Incoherent fragments of ideas are even harder to understand than an undifferentiated soup of ideas (hence high cohesion). pg 79
+- Whenever two model elements are separated into different modules, the relationship between them becomes less direct than they were, which increases the overhead of understanding their place in the design. Low coupling between modules minimizes this cost and makes it possible to analyze the contents of one module with a minimum of reference to others that interact.
+- Well-chosen Modules bring together elements of a model with particularly rich conceptual relationships. pg 79
+- IMPORTANT: When choosing Modules, focus on conceptual cohesion and telling the story of the system. If this results in tight coupling between Modules, look to see if an overlooked concept would bring the elements together in a coherent Module, or if a change in model concepts would disentangle them. Seek low coupling in the sense of concepts that can be understood and reasoned about independently of each other. The module should reflect insight into the domain. Refine the model until the concepts partition according to the high-level domain concepts and corresponding code is decoupled as well. Give the Module names that become part of the Ubiquitous Language.
+- Look for ways of minimizing the work of refactoring Modules. pg 80
+- Choose a minimum of technical rules that are essential to technical environments or actually aid development
+- Unless there is a real intention to distribute code on different servers, keep all the code that implements a single conceptual object in the same Module, if not the same object. pg 82
+- IMPORTANT: Use packaging to separate the domain layer from other code. Otherwise, leave as much freedom as possible to the domain developers to package the domain objects in ways that support their model and design choices.
