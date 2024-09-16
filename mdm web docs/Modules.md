@@ -3,7 +3,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#creating_a
 
 - Import each module's feature into a module object
 ```javascript
-import * as Moduel from "./modules/module.js";
+import * as Module from "./modules/module.js";
 ```
 
 - You can also export and import classes; useful for when your module code is written in an OO style.

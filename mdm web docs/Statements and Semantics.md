@@ -2,7 +2,6 @@
 - A variable declared with `let`, `const`, or `class` is said to be in a temporal dead zone from the start of the block until the code execution reaches the place where the variable is declared and initialized.
 - While inside the TDZ, the variable has not been initialised with any value and any attempts to access it will result in a `ReferenceError`.
 
-
 ### Closures
 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures
@@ -29,3 +28,27 @@ console.log(getX()); // 6
 ```
 
 - Here the module exports a pair of getter-setter functions, which close over the module scoped variable `x`. Even when `x` is not directly accessible from other modules, it can be read and written within the functions.
+
+### Scope
+https://developer.mozilla.org/en-US/docs/Glossary/Scope
+- The current context of execution in which values and expressions are visible or can be referenced.
+- Kinds of scopes:
+	- Global scope: The default scope for all code running in the script mode.
+	- Module scope: The scope for code running in module mode.
+	- Function scope: The scope created with a function
+	- Block scope: Identifiers created with `let`, `const`, `class`, or `function` can belong to a block scope, created with a pair of braces (a block).
+Valid
+```js
+{
+	 var x = 1;
+}
+console.log(x);
+```
+
+Invalid
+```js
+{
+	const x = 1;
+}
+console.log(x); // ReferenceError: x is not defined
+```
