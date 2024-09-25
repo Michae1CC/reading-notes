@@ -10,6 +10,11 @@ Week of 19/08
 	- Infra Layer - Provide generic technical capabilities that support the higher layers: message sending for the application, persistence of the domain, drawing widgets for the UI, etc. The infra layer may also support the pattern of interactions between the four layers through an architectural framework.
 - Partition a complex program into layers, develop a design within each layer that is cohesive and is dependent only on the layers below. Follow standard architectural patterns to provide loose coupling to the layers above. Concentration the all the code related to the domain model in one layer and isolate it from the user interface, app, and infra code. This allows a model to evolve rich enough and clear enough to effectively capture essential business knowledge and put it to work.
 
+#### Questions
+
+- What do these layers look like in the context of a webapp? Should the front-end and back-end be treated as separate systems?
+- What was generally considered infra at the time? Does infra have a split responsibility of also handling domain level logic (AWS event bridge conditions, AWS stepfunctions) 
+
 #### Relating Layers
 - Layers are meant to be loosely coupled, with design dependencies in only one direction.
 - When an object of a lower level needs to communicate upward (beyond answering a direct query) we need another mechanism, drawing on architectural patterns for relating layers such as callbacks or observers. - pg 55
@@ -75,11 +80,14 @@ Week of 19/08
 ##### Questions
 - How are services uses implemented (refers to a single class (or even a single function) or an entire application?). One example was having a service that controls a transfer between two bank accounts (a domain level service). Another example was send transfer confirmations via email, where external services are 'dressed up' using the facade design pattern to take inputs in terms of domain model.
 - "Fine grained domain objects can contribute to knowledge leaks from the domain into the application layer", what do they mean by that?
-- Would security be treated separately, to the domain model? What about something like a datamapper version or some sort encryption key that is associated with a business (perhaps used to sign responses)?
+- Would security be treated separately, to the domain model? What about something like a datamapper version or some sort encryption key that is associated with a business (perhaps used to sign responses)? Should it be considered its own layer?
+- If I have functionality that involves many Entities, who/how should that be handled?
 
 
 ### Modules
 
+- **Coupling** is the degree of interdependence between software modules; a measure of how closely connected two routines or modules; the strength of the relationships between modules.
+- Cohesion refers to the degree to which the elements inside a module belong together. In one sense, it is a measure of the strength of relationship between the methods and data of a class and some unifying purpose or concept served by that class. In another sense, it is a measure of the strength of relationship between the class's methods and data.
 - IMPORTANT: Everyone uses Modules, but few treat them as a full-fledged part of the model. Code gets broken down by all sorts of categories, from aspects of the technical architecture to dev work assignments. Even devs who refactor a lot, tend to content themselves with Modules conceived early in the project. It is a truism that there should be low coupling between modules and high cohesion within them. Explanations of the coupling between modules and cohesion within them. Explanations of coupling and cohesion tend to make them sound like technical metrics, to be judged mechanically based on the distributions of associations and interactions. Yet it isn't just code being divided into modules, but concepts. There is a limit to how many things a person can think about at once (hence low coupling). Incoherent fragments of ideas are even harder to understand than an undifferentiated soup of ideas (hence high cohesion). pg 79
 - Whenever two model elements are separated into different modules, the relationship between them becomes less direct than they were, which increases the overhead of understanding their place in the design. Low coupling between modules minimizes this cost and makes it possible to analyze the contents of one module with a minimum of reference to others that interact.
 - Well-chosen Modules bring together elements of a model with particularly rich conceptual relationships. pg 79
@@ -88,3 +96,46 @@ Week of 19/08
 - Choose a minimum of technical rules that are essential to technical environments or actually aid development
 - Unless there is a real intention to distribute code on different servers, keep all the code that implements a single conceptual object in the same Module, if not the same object. pg 82
 - IMPORTANT: Use packaging to separate the domain layer from other code. Otherwise, leave as much freedom as possible to the domain developers to package the domain objects in ways that support their model and design choices.
+- Modules need to be refactored along with the the model and code.
+- The cost of elaborate techincally driven packaging schemes are:
+- If the framework partitioning conventions pull apart the elements implementing the conceptual objects, the code no longer reveals the model.
+- There is only so much partitioning a mind can stitch back together, and if the framework uses it all up, the domain developers lose their ability to chunk the model into meaningful pieces.
+- IMPORTANT: Unless there is a real intention to distribute code on different servers, keep all the code that implements a single conceptual object in the same Module, if not the same object. pg 82
+- IMPORTANT: Use packaging to separate the domain layer from other code. Otherwise, leave as much freedom as possible to the domain developers to package the domain objects in ways that support their model and design choices.
+- A mixture of paradigms allows developers to model particular concepts with the style that best that best fits pg 86
+- When the domain model is bridging two paradigms, it is crucial to keep it cohesive showing the relationships between the rules and the objects pg 86
+- Rules of thumb for mixing non-objects elements into a predominately OO system pg 87 :
+	- Don't fight the implementation paradigm. When modeling, find concepts that fit the paradigm that they will be implemented in
+	- Lean on the Ubiquitous Language. Even when there is no rigorous connection between tools, very consistent use of language can keep parts of the design from diverging
+	- Be skeptical. Is the tool really pulling its weight? Just because you have some rules, that doesn't necessarily mean you need the overhead of a rules engine. Rules can be expressed as objects if a little less neat, and multiple paradigms complicate matters enormously. 
+
+#### Questions
+
+- What are modules in the language of most languages, just files?
+
+## The Lifecycle of a Domain Object
+
+
+- Managing these persistent objects presents challenges that can easily derail an attempt at Model-Driven Design, these problems fall into two main camps:
+	- Maintaining integrity throughout the lifecycle
+	- Preventing the model from getting swamped by the complexity of managing the lifecycle
+- Threes patterns will address these issues:
+	- First Aggregates tighten up the model itself by defining clear ownership and boundaries, avoiding a chaotic tangled web of objects. This is crucial to maintaining integrity in all phases of the lifecycle.
+	- Then we focus on the beginning of the lifecycle, using Factories to create and reconstitute complex objects objects and Aggregates, keeping their internal structure encapsulated
+	- Finally Repositories address the middle and end of the life-cycle, providing the means of finding and retrieving persistent objects while encapsulating the immense infrastructure involved.
+- With many users consulting and updating different objects in the system we have to prevent simultaneous changes to interdependent objects
+- IMPORTANT: It is difficult to guarantee the consistency of changes to objects in a model with complex associations. Invariants need to be maintained that apply to closely related groups, not just discrete objects. Yet cautious locking schemes cause multiple users to interfere pointlessly with each other and make a system unusable. pg 89
+- An Aggregate is a cluster of associated objects that we treat as a unit for the purposes of data changes. Each Aggregate has a root and boundary. The boundary defines what is inside the Aggregate. The root is a specific Entity contained in the Aggregate. The root is the only member of the aggregate that outside objects are allowed to hold references to, although objects within the boundary may hold references to each other.
+- Entities other than the root have local identity, but it only needs to be unique within the aggregate. pg 90
+- A deletion operation must remove everything in the entity boundary at once.
+- When a change to any object within the Aggregate boundary is committed, all invariants of the whole Aggregate must be satisfied.
+- IMPORTANT: Cluster the Entities and Value Objects into Aggregates and define boundaries around each. Choose one Entity to be the "root" of each Aggregate, and control all access to the objects inside the boundary through the root. Only allow references to the root to be held by external objects. Transient references to internal members can be passed out for use within a single operation only. Because the root controls access it cannot be blind-sided by changes to the internals. This makes it practical to enforce all invariants for objects in the Aggregate and for the Aggregate as a whole in any state-change. pg 93
+- Aggregates mark off the scope within which invariants have to be maintained at every stage of the lifecycle. pg 97
+
+### Factories
+
+- When creation of an object or an entire Aggregate becomes complicated or reveals too much of the internal structure, Factories provide encapsulation.
+- An object that expresses some model concept should be distilled to the point that nothing remains that does not relate to its meaning or support its role in those interactions.
+- Problems arise from giving a complex object responsibility for its own creation.
+- Since cars and are never assembled and driven at the same time, there is no value in combining both of these functions into the same mechanism. Likewise, assembling a complex compound object is a job that is best separated from whatever job that object will have to do when it is finished.
+- A client taking on object creation becomes unnecessarily complicated and blurs its responsibility. It breaches the encapsulation of the domain objects and Aggregates created. Even worse if the client is part of the application layer, then the responsibilities have leaked out of the domain layer pg  99

@@ -6,3 +6,13 @@
 pg 72
 - Callbacks are typically the last argument. pg 73
 - In CPS, error propagation is done by passing the error to the next callback in the chain
+
+## Observer Pattern
+
+- The `EventTransmitter` class allows us to register one or more functions as listeners, which will be involved when a particular event type is fired. pg 78
+- The `EventEmitter` is exported from the events core module.
+- The essential methods of the `EventEmitter` are as follows:
+	- `on(event, listener)`: This method allows us to register a new listener (a function) for the given event type.
+	- `once(event, listener)`: This method registers a new listener, which is then removed after the event is emitted for the first time.
+	- `emit(event, [arg1], [...])`: This method produces a new event and provides additional arguments to be passed to the listeners.
+	- `removeListeners(event, listener)`: This method removes a listener for the specified event type.
