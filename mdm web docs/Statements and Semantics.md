@@ -37,6 +37,7 @@ https://developer.mozilla.org/en-US/docs/Glossary/Scope
 	- Module scope: The scope for code running in module mode.
 	- Function scope: The scope created with a function
 	- Block scope: Identifiers created with `let`, `const`, `class`, or `function` can belong to a block scope, created with a pair of braces (a block).
+
 Valid
 ```js
 {

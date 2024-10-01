@@ -40,3 +40,15 @@ https://docs.docker.com/engine/network/drivers/host/
 - Useful for:
 	- optimising performance
 	- container needs to handle a large range of ports
+
+
+#### Packet Filtering and Firewalls
+
+- On Linux Docker creates `iptables` and `ip6tables` rules to implement network isolation, port publishing and filtering
+- By default all external source IPs are allowed to connect to ports that have been published to the Dockers host's address
+- To allow only a specific IP or network to access the containers, insert a negated rule at the top of the DOCKER-USER filter chain. For example, the following rule drops packets from all IP addresses except `192.0.2.2`
+```
+iptables -I DOCKER-USER -i ext_if ! -s 192.0.2.2 -j DROP
+```
+
+- To access containers on a bridge network from outside your Docker host, you must set up routing to the bridge network via an address to the Docker host. This can be achieved using static routes, Border Gateway Protocol, or any other means appropriate for your network.
