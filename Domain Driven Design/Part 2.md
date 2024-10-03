@@ -146,3 +146,24 @@ Week of 19/08
 - Two basic requirements of a factory are pg 100:
 	- Each creation method is atomic and enforces all invariants of the created object or aggregate.
 	- The Factory should be abstracted to the type desired, rather than the concrete class involved.
+- You create a factory to build something whose details you want to hide, and you place the factory where you want the control where you want the control to be
+- When there doesn't seem to be a natural host, we must create a dedicated Factory object or Service. pg 101
+- Factories can actually obscure simple objects that don't use polymorphism
+- Complex assemblies, especially of Aggregates, call for factories.
+- The operation must be atomic, creation should fail if all the events are not satisfied
+- The Factory will be coupled to its arguments pg 103
+- The Factory can delegate invariant checking to the product and this is often best. Under some circumstances there are advantages to placing invariant logic in the Factory and reducing clutter in the product. This is especially appealing with aggregate rules. It is especially unappealing with Factory Methods attached to other domain objects.
+- Factories are good for assigning identifiers, although they are usually done at a infra layer
+- An Entity Factory used for reconstitution:
+	- Does not assign a new tracking id
+	- Will handle violation of an invariant differently, will inform and attempt to fix.
+
+
+## Repositories
+
+- Three ways to get a reference to an object: pg 106
+	- Create an object
+	- Traverse associations
+	- Execute a query to find the object in a database base on its attributes, or find the constituent of an object and then _reconstitute_ it
+- IMPORTANT: A client needs a practical means of acquiring references to pre-existing domain objects. If the infra makes it easy to do so, the developers of the client may add more traversable associations, muddling the model. On the other hand, they may use queries to pull the exact data they need from the database, or few specific objects rather than navigating the modeled associations. Domain logic moves into queries and client code, and the Entities and Values Objects become mere data containers. The sheer technical complexity of applying most database access infra quickly swaps the client code, leading to the dumbing-down of the domain layer and the irrelevance of the model. pg 107
+- Generally speaking, Value Objects do not need global search access. Persistent Value Objects are usually found by traversal from some Entity that acts as the root of the Aggregate that encapsulates them.
