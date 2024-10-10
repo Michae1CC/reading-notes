@@ -11,3 +11,4 @@ https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/skelet
 	- morgan: https://www.npmjs.com/package/morgan
 	- http-errors: https://www.npmjs.com/package/http-errors
 
+https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose#mongoose_primer
