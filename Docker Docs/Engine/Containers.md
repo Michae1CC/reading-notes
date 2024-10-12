@@ -8,3 +8,9 @@ Docker runs processes isolated containers. A container is a process which runs o
 If you want to run the container in the background instead, you can use the `--detach` (or `-d`) flag. This starts the container without occupying you terminal window.
 
 https://docs.docker.com/engine/containers/run/#container-networking
+
+- bind mounts are read/write by default
+
+https://docs.docker.com/engine/containers/runmetrics/
+
+- Docker supports cgroup v2 since Docker 20.10
