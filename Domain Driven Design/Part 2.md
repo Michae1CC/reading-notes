@@ -179,3 +179,6 @@ Week of 19/08
 	- Decouples application and domain design from persistence technology, multiple database strategies or even multiple data sources
 	- Communicates design decisions about objects access
 	- Easy substitution of dummy implementation, for use in testing, using in-memory collection.
+- IMPORTANT: A subset of persistent objects must be globally accessible through a search based on object attributes. Such access is needed for the roots of Aggregates that are not convenient to reach by traversal. They are usually Entities, sometimes Value Objects with complex internal structure, and sometimes enumerated Values. Providing access to other objects muddies important distinctions. Free database queries can actually breach the encapsulation of domain object and Aggregates. Exposure of technical infrastructure and database access mechanisms complicates the client and obscures the Model Driven Design. pg 108
+![[Pasted image 20241014075455.png]]
+- A Repository represents all the objects of a certain type as a conceptual set (usually simulated). It acts like a collection, except with more elaborate querying capability. Objects of the appropriate type are added and removed, and the machinery 

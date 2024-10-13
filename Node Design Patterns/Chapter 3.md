@@ -16,3 +16,7 @@ pg 72
 	- `once(event, listener)`: This method registers a new listener, which is then removed after the event is emitted for the first time.
 	- `emit(event, [arg1], [...])`: This method produces a new event and provides additional arguments to be passed to the listeners.
 	- `removeListeners(event, listener)`: This method removes a listener for the specified event type.
+
+### Callbacks
+
+- Don't abuse in-place function definitions when defining callbacks
