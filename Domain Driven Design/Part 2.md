@@ -179,7 +179,6 @@ Week of 19/08
 	- Communicates design decisions about objects access
 	- Easy substitution of dummy implementation, for use in testing, using in-memory collection.
 - IMPORTANT: A subset of persistent objects must be globally accessible through a search based on object attributes. Such access is needed for the roots of Aggregates that are not convenient to reach by traversal. They are usually Entities, sometimes Value Objects with complex internal structure, and sometimes enumerated Values. Providing access to other objects muddies important distinctions. Free database queries can actually breach the encapsulation of domain object and Aggregates. Exposure of technical infrastructure and database access mechanisms complicates the client and obscures the Model Driven Design. pg 108
-![[Pasted image 20241014075455.png]]
 - A Repository represents all the objects of a certain type as a conceptual set (usually simulated). It acts like a collection, except with more elaborate querying capability. Objects of the appropriate type are added and removed, and the machinery
 - Implementing a repository: pg 111
 	- Abstract the type. A repository "contains" all instances of a specific type, but this does not have to mean one Repository for each class. Could be an interface where the implementers are not even hierarchically related.
@@ -188,3 +187,4 @@ Week of 19/08
 - The reconstitution of a stored object is not a new conceptual object
 - The client of the Repo should be given the illusion that objects are in memory pg 112
 - the Repository delegates object creation to a Factory which could be used to create objects from scratch.
+- IMPORTANT: When the database is being used as an object store, don't let the data model and the object model diverge too far, regardless of the power of the mapping tools. Sacrifice some richness of object relationships to keep close to the relational model. Compromise some formal relational standards, such as normalization, if it helps simplify the object mapping. Processes outside the object system should not access such an object store. They could violate invariants enforced by the objects. Also, their access will lock in the data model so that it is hard to change when the objects are refactored.
