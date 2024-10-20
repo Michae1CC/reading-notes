@@ -20,3 +20,9 @@ pg 72
 ### Callbacks
 
 - Don't abuse in-place function definitions when defining callbacks
+
+### Callback Hell
+
+- Basic principles that help keep the nesting level low and improve the context, to immediately exit the current statement instead of writing complete if/else statements
+- Create named functions for callbacks, keeping them out of closures and passing intermediate results as arguments. Naming our functions will also make them look better in stack traces.
+- Modularize the code. Split into smaller reusable functions - pg 95
