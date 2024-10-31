@@ -4,3 +4,4 @@
 - Working Effectively with Legacy Code, Michael C. Feathers
 - Clean Architecture, Robert Cecil Martin
 
+https://tldp.org/LDP/abs/html/io-redirection.html
