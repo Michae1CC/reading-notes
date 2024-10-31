@@ -99,3 +99,16 @@ public class DelinquentInvoiceSpecification {
 	}
 }
 ```
+
+### Building to order
+- Whole new objects or set of objects can be made or reconfigured to satisfy the Specification
+- An interface of the generator that is defined in terms of a descriptive Specification explicitly constrains the generated objects. This will have several advantages:
+	- The generators implementation is decoupled from its interface. The specification declares the requirements for the output, but that does not define how the result is reached.
+	- The interface communicates its rules explicitly so developers can know what to expect from the generator without understanding all the details of its operation. The only way to predict the behaviour of a procedurally defined generator is to run cases or to understand every line of code.
+	- The interface is more flexible, or can be enhanced with more flexibility, since the statement of the requests is in the hands of the client, while the server (generator) is only obligated to fulfill the letter of the Specification.
+	- It is easier to test since the model contains an explicit way to define input into the generator that is also a validation of the output. That is, the same Specification that is passed into the generators interface to constrain the creation process can also be used, in its validation role to confirm the created object is correct.
+
+
+## Supple Design
+
+pg 170
