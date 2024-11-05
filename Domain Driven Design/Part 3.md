@@ -112,3 +112,15 @@ public class DelinquentInvoiceSpecification {
 ## Supple Design
 
 pg 170
+
+- IMPORTANT: If a developer must consider the implementation of a component in order to use it, the value of encapsulation is lost. If someone other than the original developer must infer the purpose of an object or operation based on implementation, that new developer may infer the purpose that the operation or class fulfills only by chance. If that was not the intent, the code may work for the moment, but the conceptual basis of the design will have been corrupted, and the two developers will be working at cross-purposes.
+- IMPORTANT: Name classes and operations to describe their effect and purpose, without reference to the mean by which they do what they promise. This relieves the client developer of the need to understand the internals. These names should conform to the Ubiquitous Language so that team members can quickly infer their meaning. Write a test for a behaviour before creating it, to force your thinking into the client developer mode. pg 172
+
+#### Side Effect-Free Functions
+
+- IMPORTANT: Interactions of multiple rules or compositions of calculations become extremely difficult to predict. The developer calling an operation must understand its implementation and the implementation of all its delegations in order to anticipate the result. The value of any abstraction of interfaces is limited if the developers are forced to pierce the veil. Without safely predictable abstractions, the developers must limit the combinatory explosion, placing a low ceiling on the richness of behaviour that is feasible to build.
+- The problem of side-effects can be mitigated it two ways:
+	- Keep commands and queries strictly segregated in different operations. The methods that cause changes do not return domain data, and kept as simple as possible.
+	- There are often alternative models and designs that do not call for existing object to be modified at all. Instead a new Value Object, representing the result of a computation is created and returned.
+- IMPORTANT: Place as much logic of the program as possible into functions, operations that return results with no observable side effects. Strictly segregate commands (resulting in modifications to observable state) into very simple operations that do not return domain information. Further control side effects by moving complex logic into Value Objects with conceptual definitions fitting the responsibility.
+- Side-Effect-Free-Functions, especially in immutable Value Objects, allow safe combination of operations. When a Function is presented through an Intention Revealing Interface, a developer can use it without understanding the detail of its implementation.
