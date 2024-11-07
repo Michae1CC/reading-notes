@@ -7,7 +7,7 @@ pg 72
 - Callbacks are typically the last argument. pg 73
 - In CPS, error propagation is done by passing the error to the next callback in the chain
 
-## Observer Pattern
+### Observer Pattern
 
 - The `EventTransmitter` class allows us to register one or more functions as listeners, which will be involved when a particular event type is fired. pg 78
 - The `EventEmitter` is exported from the events core module.
