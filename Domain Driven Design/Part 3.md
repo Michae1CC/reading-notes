@@ -124,3 +124,9 @@ pg 170
 	- There are often alternative models and designs that do not call for existing object to be modified at all. Instead a new Value Object, representing the result of a computation is created and returned.
 - IMPORTANT: Place as much logic of the program as possible into functions, operations that return results with no observable side effects. Strictly segregate commands (resulting in modifications to observable state) into very simple operations that do not return domain information. Further control side effects by moving complex logic into Value Objects with conceptual definitions fitting the responsibility.
 - Side-Effect-Free-Functions, especially in immutable Value Objects, allow safe combination of operations. When a Function is presented through an Intention Revealing Interface, a developer can use it without understanding the detail of its implementation.
+
+### Assertions
+
+pg 179
+- When the side effects of operations are only defined implicitly by their implementation, designs with a lot of delegation become a tangle of cause and effect. The only way to understand a program is to trace execution through branching paths. The value of encapsulation is lost. The necessity of tracing concrete execution defeats abstraction.
+- State post conditions of operations and invariants of classes and Aggregates. If Assertions cannot be coded directly in your programming language, write automated unit tests for them. Write them into documentation or diagrams where it fits the style of the project's development process. Seek models with coherent sets of concepts, which lead a developer to infer the intended Assertions, accelerating the learning curve and reducing the risk of contradictory code. pg 179
