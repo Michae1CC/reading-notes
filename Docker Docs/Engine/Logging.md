@@ -14,7 +14,31 @@ https://docs.docker.com/engine/logging/configure/
 	- non-blocking, delivery that stores log messages in an intermediate per-container buffer for consumption by driver.
 - The non-blocking message delivery mode presents applications from blocking due to logging back pressure. Applications are likely to fail in unexpected ways when STDERR or STDOUT streams block.
 
+#### Json File Driver
+
 https://docs.docker.com/engine/logging/drivers/json-file/
+
+- Be default, Docker captures the standard output (and standard error) of all your containers and writes them in files using the JSON format
+- Example:
+
+```
+{
+  "log": "Log line is here\n",
+  "stream": "stdout",
+  "time": "2019-01-01T11:11:11.111111111Z"
+}
+```
+
+#### Awslogs Driver
+
+https://docs.docker.com/engine/logging/drivers/awslogs/
+
+- Send container logs to Amazon Cloudwatch Logs. Log entries can be retrieved through the AWS management Console.
+- You can set the logging driver for a specific container by using the `--log-driver` option to `docker run`: `docker run --log-driver=awslogs ...`
+- Options:
+	- `awslogs-endpoint`: Uses either the `awslogs-region` log option or the detected region to construct the remote CloudWatch Logs API endpoint
+	- `awslogs-group`: You must specify a log-group for the awslogs driver.
+	- `awslogs-create-group`: Log driver returns an error by default if the log group does not exist. You set this option to `true` to automatically create the log group as needed.
+
 https://docs.docker.com/engine/logging/plugins/
 https://docs.docker.com/engine/logging/drivers/fluentd/
-https://docs.docker.com/engine/logging/drivers/awslogs/
