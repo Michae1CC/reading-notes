@@ -118,6 +118,8 @@ pg 170
 
 #### Side Effect-Free Functions
 
+pg 175
+
 - IMPORTANT: Interactions of multiple rules or compositions of calculations become extremely difficult to predict. The developer calling an operation must understand its implementation and the implementation of all its delegations in order to anticipate the result. The value of any abstraction of interfaces is limited if the developers are forced to pierce the veil. Without safely predictable abstractions, the developers must limit the combinatory explosion, placing a low ceiling on the richness of behaviour that is feasible to build.
 - The problem of side-effects can be mitigated it two ways:
 	- Keep commands and queries strictly segregated in different operations. The methods that cause changes do not return domain data, and kept as simple as possible.
@@ -128,5 +130,27 @@ pg 170
 ### Assertions
 
 pg 179
-- When the side effects of operations are only defined implicitly by their implementation, designs with a lot of delegation become a tangle of cause and effect. The only way to understand a program is to trace execution through branching paths. The value of encapsulation is lost. The necessity of tracing concrete execution defeats abstraction.
+
 - State post conditions of operations and invariants of classes and Aggregates. If Assertions cannot be coded directly in your programming language, write automated unit tests for them. Write them into documentation or diagrams where it fits the style of the project's development process. Seek models with coherent sets of concepts, which lead a developer to infer the intended Assertions, accelerating the learning curve and reducing the risk of contradictory code. pg 179
+- IMPORTANT: When side effects of operations are only defined implicitly by their implementation, designs with a lot of delegation become a tangle of cause and effect. The only way to understand a program is to trace execution through branching. The value of encapsulation is lost. The necessity of tracing concrete execution defeats abstraction. pg 179
+- **post conditions** -  describe the side effects of an operation, the guaranteed outcome of calling a method
+- **pre-conditions** - conditions that must be satisfied in order for the post-conditions guarantee to hold
+- IMPORTANT: State post conditions of operations and invariants of classes and Aggregates. If assertions cannot be coded directly in your programming language, write automated unit tests for them. Write them in documentation or diagrams where it fits the style of the project's development process. Seek models with coherent sets of concepts, which lead a developer to infer the intended assertions, accelerating the learning curve and reducing the risk of contradictory code.
+
+#### Conceptual Contours
+
+pg 183
+
+- IMPORTANT: When elements of a model or design are embedded in a monolithic construct, their functionality get duplicated. The external interface doesn't say everything a client might care about. Their meaning is hard to understand, because different concepts are mixed together. On the other hand, breaking classes and methods down can pointlessly complicate the client, forcing client objects to understanding how tiny pieces fit together. Worse, a concept can be lost completely.
+- IMPORTANT: Decompose design elements (operations, interfaces) into cohesive units, taking into consideration you intuition of the important divisions in the domain. Observe the axes of change and stability through successive refactorings and look for underlying Conceptual Contours that explain these shearing patterns.
+- Intention Revealing Interfaces allow clients to present objects as units of meaning rather than  just mechanisms.
+- Side Effect Free Functions and Assertions make it safe to use those units and make complex combinations.
+
+
+#### Standalone Classes
+
+pg 188
+
+- Interdependencies make models hard to understand. They also make them hard to test and maintain.
+- IMPORTANT: Even within a Module, the difficulty of interpreting a design increases wildly as dependencies are added. This adds to mental overload, limiting the design complexity a developer can handle. Implicit concepts contribute to this load even more than explicit references.
+- IMPORTANT: Low coupling is a fundamental to the object design. When you can, go all the way. Eliminate all other concepts from the picture. Then the class will be completely self-contained and can be studied and understood alone. Every such self-contained class significantly eases the burden of understanding a Module.
