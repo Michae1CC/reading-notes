@@ -154,3 +154,25 @@ pg 188
 - Interdependencies make models hard to understand. They also make them hard to test and maintain.
 - IMPORTANT: Even within a Module, the difficulty of interpreting a design increases wildly as dependencies are added. This adds to mental overload, limiting the design complexity a developer can handle. Implicit concepts contribute to this load even more than explicit references.
 - IMPORTANT: Low coupling is a fundamental to the object design. When you can, go all the way. Eliminate all other concepts from the picture. Then the class will be completely self-contained and can be studied and understood alone. Every such self-contained class significantly eases the burden of understanding a Module.
+
+
+#### Closure of Operations
+
+pg 190
+
+- Most interesting things end up doing things that can't be characterized by primatives alone.
+- IMPORTANT: Where is fits, define an operation whose return type is the same as the type of its arguments. If the implementer's has state that is used in the computation, then the implementer is effectively an argument of the operation, so the arguments and return value should be of the same type as the implementer.
+- An operation can be closed under an abstract type, in which case specific arguments can be different concrete classes. Afterall, addition is closed under real numbers.
+
+
+### Relating Design Patterns to the Model
+
+#### Strategy
+
+- IMPORTANT: Domain models contain processes that are not technically motivated, but actually meaningful in the problem domain. When alternative processes must be provided, the complexity of choosing the appropriate process is combined with the complexity of the multiple processes themselves, and things get out of hand. pg 219
+
+
+### Composite
+
+- Common behaviour has to be duplicated at each layer of the hierarchy, and nesting is rigid. Clients must deal with different levels of the hierarchy through different interfaces even though there may be no conceptual difference they care about. Recursion through the hierarchy to produce aggregate information.
+- Define an abstract type that encompasses all members of COMPOSITE. Methods that return information are implemented on containers to return aggregate information about their contents, while "leaf" nodes implement them based on their values. Clients deal with the abstract type and have no need to distinguish leafs from containers.
