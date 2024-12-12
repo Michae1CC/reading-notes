@@ -35,3 +35,12 @@ pg 252
 - IMPORTANT: The freewheeling development of the upstream team can be cramped if the downstream has veto power over changes or if procedures for requesting changes are too cumbersome. The upstream team may even be inhibited by worries of breaking the downstream system. Meanwhile, the downstream team can be helpless, at the mercy of upstream priorities.
 - IMPORTANT: Establish a clear customer/supplier relationship between two teams. In planning sessions, make the downstream team play the customer role to the upstream team. Negotiate and budget tasks for the downstream requirements so that everyone understands the commitment and schedule.
 - Jointly develop automated acceptance tests that will validate the interface they expect.
+
+
+## Conformist
+
+pg 255
+
+- IMPORTANT: When two dev teams have an upstream/downstream relationship in which the upstream has no motivation to provide for the downstream team's needs, the downstream team is helpless. Their project will be delayed until they ultimately learn to live with what they are given.
+- If the design work is difficult, then the downstream team will still need to develop its own model. They will have to take full responsibility for a translation layer that is likely to be complex.
+- IMPORTANT: Eliminate the complexity of translation between Bounded Contexts by slavishly adhering to the model of the upstream team. This cramps the style of the downstream designers. It probably is not going to the ideal model for the application, but it is a huge reduction in complexity. Plus, you will share Ubiquitous Language with you supplier team. Plus, you will make communication easy for them. Altruism may be sufficient to get them to share information with you.
