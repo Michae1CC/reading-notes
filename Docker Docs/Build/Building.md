@@ -66,3 +66,28 @@ https://docs.docker.com/build/building/variables/
 - They may persist in the image metadata as provenance attestations and in the image history, which is why they are not suitable for holding secrets
 
 https://docs.docker.com/build/building/variables/#scoping
+
+- Build arguments declared in the global scope aren't automatically inherited into the build stages. They're only accessible in the global scope.
+
+https://docs.docker.com/build/building/variables/#pre-defined-build-arguments
+
+- Multi-platform build arguments describe the build and target platforms for the build.
+- The build platform is the OS, architecture and platform variant of the host system where the builder is running:
+	- `BUILDPLATFORM`
+	- `BUILDOS`
+	- `BUILDARCH`
+	- `BUILDVARIANT`
+- The target platform arguments hold the same values for the target platforms for the build, specified using the `--platform` flag for the `docker build` command
+	- `TARGETPLATFORM`
+	- `TARGETOS`
+	- `TARGETARCH`
+	- `TARGETVARIANT`
+- Proxy build arguments let you specify proxies to use for a build:
+	- `HTTP_PROXY`
+	- `HTTPS_PROXY`
+	- `FTP_PROXY`
+	- `NO_PROXY`
+	- `ALL_PROXY`
+
+https://docs.docker.com/build/building/variables/#pre-defined-build-arguments
+
