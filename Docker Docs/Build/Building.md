@@ -91,3 +91,18 @@ https://docs.docker.com/build/building/variables/#pre-defined-build-arguments
 
 https://docs.docker.com/build/building/variables/#pre-defined-build-arguments
 
+https://docs.docker.com/build/building/secrets/
+
+- A build secret is any piece of sensitive information, such as password or API token, consumed as part of your application's build process.
+- For secret mounts and SSH mounts, using build secrets is a two-step process. First you need to pass the secret into the `docker build` command, and then you need to consume the secret in your `Dockerfile`.
+- `docker build --secret id=aws,src=$HOME/.aws/credentials .`
+- To consume a secret in a build use the `--mount=type=secret` flag
+- The source of a secret can either be a file or an envar
+- When consuming a secret in a Dockerfile, the secret is mounted to a file by default
+
+https://docs.docker.com/build/building/multi-platform/
+
+- A multi-platform build refers to a single build invocation that targets multiple different OS or CPU architecture combinations
+- When building images, this let's you create a single image that can run on multiple platforms
+- Container's share the host kernel, which means that code that's running inside the container must be compatible with the host's architecture
+- Mutil-platform images contain a manifest list, pointing to multiple manifests, each of which points to different configuration and set of layers
