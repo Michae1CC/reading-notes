@@ -1,4 +1,6 @@
 
+https://12factor.net/processes
+
 - Functional Design: Principles, Patterns, and Practices, Robert Cecil Martin
 - The Art of Unit Testing, Roy Osherove
 - Patterns of Enterprise Application Architecture, Martin Fowler

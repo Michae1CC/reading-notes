@@ -106,3 +106,43 @@ https://docs.docker.com/build/building/multi-platform/
 - When building images, this let's you create a single image that can run on multiple platforms
 - Container's share the host kernel, which means that code that's running inside the container must be compatible with the host's architecture
 - Mutil-platform images contain a manifest list, pointing to multiple manifests, each of which points to different configuration and set of layers
+
+https://docs.docker.com/build/building/base-images/
+
+- To ensure that you're getting the latest version of dependencies in your build, you can use `--no-cache` option to avoid cache hits
+
+```
+# syntax=docker/dockerfile:1
+FROM ubuntu:24.04
+RUN apt-get -y update && apt-get install -y --no-install-recommends python3
+```
+
+- Sort multi-line arguments alphanumerically to make maintenance easier.
+
+https://docs.docker.com/build/building/best-practices/#leverage-build-cache
+
+- To fully secure you supply chain integrity, you can pin the image version to a specific digest.
+```
+# syntax=docker/dockerfile:1
+FROM alpine:3.19@sha256:13b7e62e8df80264dbb747995705a986aa530415763a6c58f84a3ca8af9a5bcd
+```
+
+- When you check in a change to source control or create a pull request, use github actions or another CI/CD pipeline to automatically build and tag a Docker image and test it.
+- Split long or complex `RUN` statements on multiple lines separated with backslashes to make Dockerfile more readable, understandable and maintainable
+
+```
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    package-bar \
+    package-baz \
+    package-foo
+```
+
+- Always combine `RUN apt-get update` with `apt-get install` in the same `RUN` statement to prevent caching problems
+- Docker executes commands using the `/bin/sh -c` interpreter
+- If you want the command to fail due to an error at ay stage in the pipe, prepend `set -o pipefail &&` to ensure that an unexpected error prevents the build from inadvertently succeeding. For example:
+
+```
+RUN set -o pipefail && wget -O - https://some.site | wc -l > /number
+```
+
+https://docs.docker.com/build/building/best-practices/#expose
