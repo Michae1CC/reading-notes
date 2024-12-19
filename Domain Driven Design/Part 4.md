@@ -44,3 +44,27 @@ pg 255
 - IMPORTANT: When two dev teams have an upstream/downstream relationship in which the upstream has no motivation to provide for the downstream team's needs, the downstream team is helpless. Their project will be delayed until they ultimately learn to live with what they are given.
 - If the design work is difficult, then the downstream team will still need to develop its own model. They will have to take full responsibility for a translation layer that is likely to be complex.
 - IMPORTANT: Eliminate the complexity of translation between Bounded Contexts by slavishly adhering to the model of the upstream team. This cramps the style of the downstream designers. It probably is not going to the ideal model for the application, but it is a huge reduction in complexity. Plus, you will share Ubiquitous Language with you supplier team. Plus, you will make communication easy for them. Altruism may be sufficient to get them to share information with you.
+
+
+## Separate Ways
+
+pg 261
+
+- Integration is always expensive, and sometime the benefit is small
+- Declare a bounded context to have no connection to the others at all, allowing developers to find simple specialized solutions within this small scope
+
+
+## Open Host Service
+
+pg 263
+
+- When a subsystem has to be integrated with many others, customizing a translator for each can bog down the team. There is no more to maintain, and more and more to worry about when changes are made
+- Define a protocol that gives access to your subsystem as a set of services. Open the protocol so that all who need to integrate with you can use it. Enhance and expand the protocol to handle new integration requirements, except when a single team has idiosyncratic needs. Then use a one-off translator to augment the open protocol so that the protocol can stay simple and coherent.
+
+
+## Published Language
+
+pg 264
+
+- Direct translation to and from the existing domain models may not be a good solution. Those models may be overly complex and poorly factored. They are probably undocumented. If one is used as a data interchange language, it essentially becomes frozen an cannot respond to new development needs.
+- Use a well-documented shared language that can express the necessary domain information as a common medium of communication, translating as necessary into and out of that language.
