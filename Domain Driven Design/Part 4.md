@@ -68,3 +68,24 @@ pg 264
 
 - Direct translation to and from the existing domain models may not be a good solution. Those models may be overly complex and poorly factored. They are probably undocumented. If one is used as a data interchange language, it essentially becomes frozen an cannot respond to new development needs.
 - Use a well-documented shared language that can express the necessary domain information as a common medium of communication, translating as necessary into and out of that language.
+
+
+### Highlighted Core
+
+pg 292
+
+- Even though we may know broadly what constitutes an element of the Core Domain, we won't come up with consistent choices from developer to developer or even from one day to the next. As we unravel the model for ourselves, we have no effective way of sharing our discoveries, or even of recording them for ourselves to aide memory. The labor of constantly sifting the model in our heads to identify the key parts is simply too hard. Significant structural changes to the code are the ideal way of identifying the core domain, but not always practical in the short-term. In fact, such major coed changes are difficult to undertake without the very view we are lacking.
+- Create a separate document to explain the core domain, it describes the Core Domain and the primary interactions among the Core elements
+- Flag the elements of the Core Domain within the primary repository of the model, without particularly trying to elucidate its role. Make it effortless for a developer to know what is in or out of the CORE.
+- Use a distillation document as a guide. When programming changes code that does not require any update to the distillation document, they have fully autonomy
+- When the  distillation document requires changes to stay in touch, either because they are fundamentally changing the Core Domain elements or relationships or because they are changing the boundaries of the Core, then consultation is called for and dissemination of the new model through a new version of the distillation document.
+
+- When a model or code change affects the Distillation Document, it requires consultation with other team members. When the change is made, it requires immediate notification of all members and the dissemination of the new version of the Distillation Document. Other changes can be integrated without consultation or notification and will be encountered by other members in the course of their work.
+
+
+### Cohesive Mechanisms
+
+pg 295
+
+- The computations sometimes reach a level of complexity that begins to bloat the design. The conceptual "what" is swamped by the mechanistic "how". A large number of methods that provide algorithms for resolving the problem obscure the methods that express the problem.
+- Partition a conceptually cohesive mechanism into a separate lightweight framework. Particularly watch for formalisms or well-documented categories of algorithms. Expose the capabilities of the framework with an Intention-revealing interface. Now the other elements of the domain focused on expressing the problem, delegating the intricacies of the solution to the framework.
