@@ -89,3 +89,12 @@ pg 295
 
 - The computations sometimes reach a level of complexity that begins to bloat the design. The conceptual "what" is swamped by the mechanistic "how". A large number of methods that provide algorithms for resolving the problem obscure the methods that express the problem.
 - Partition a conceptually cohesive mechanism into a separate lightweight framework. Particularly watch for formalisms or well-documented categories of algorithms. Expose the capabilities of the framework with an Intention-revealing interface. Now the other elements of the domain focused on expressing the problem, delegating the intricacies of the solution to the framework.
+
+
+### Abstracted Core
+
+pg 305
+
+- When there is a lot of interaction between subdomains in separate packages, either many references will have to be created between packages, which defeats much of the value of the partitioning, or the interaction has to be made more indirect, which makes the model less communicative (harder to understand).
+- Identify the most fundamental conceptual elements in the model and factor them into distinct classes, abstract classes, or interfaces. Design this abstract model so that it expresses most of the interaction between significant components. Place this abstract overall model in its own package, while the specalized, detailed implementation classes are placed in their own package defined by subdomain.
+- The Abstract core should end up looking like the Distillation Document
