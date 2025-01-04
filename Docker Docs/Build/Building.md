@@ -119,6 +119,8 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends python3
 
 - Sort multi-line arguments alphanumerically to make maintenance easier.
 
+### Best practices
+
 https://docs.docker.com/build/building/best-practices/#leverage-build-cache
 
 - To fully secure you supply chain integrity, you can pin the image version to a specific digest.
@@ -146,3 +148,27 @@ RUN set -o pipefail && wget -O - https://some.site | wc -l > /number
 ```
 
 https://docs.docker.com/build/building/best-practices/#expose
+
+https://docs.docker.com/build/building/best-practices/#expose
+
+- Use the `ENV` to update the `PATH` envar for the software for the software your container installs
+- `ENV` is useful for providing the required environment variables specific to services you want to containerize
+- `ENV` can be used to set commonly used version numbers to services you want to containerize, for example:
+
+```Dockerfile
+ENV PG_MAJOR=9.3
+ENV PG_VERSION=9.3.4
+RUN curl -SL https://example.com/postgres-$PG_VERSION.tar.xz | tar -xJC /usr/src/postgres
+ENV PATH=/usr/local/postgres-$PG_MAJOR/bin:$PATH
+```
+
+https://docs.docker.com/build/building/best-practices/#add-or-copy
+
+- `COPY` supports basic copying of files into the container, from the build context or from a stage in a multi-stage build
+- `ADD` supports features for fetching files from remote HTTPS and Git URLs and extracting tar files automatically when adding files from the build context
+- bind-mounted files are only added temporarily for a single `RUN` instruction, and don't persist in the final image. If you need to include files from the build context in the final image, use `COPY`
+
+https://docs.docker.com/build/building/best-practices/#entrypoint
+
+
+- The best use for `ENTRYPOINT` is to set the image's main command, allowing that image to be run as though as it was that command, and then use `CMD` as the default flags.
