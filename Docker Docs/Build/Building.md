@@ -35,7 +35,7 @@ https://docs.docker.com/build/building/multi-stage/#stop-at-a-specific-build-sta
 
 - When you build your image you don't need to build the entire image for every stage
 - You can specify a build target with the `--target` flag
-- You can use `COPU --from` instruction to copy from a separate image, eg `COPY --from=nginx:latest ...`
+- You can use `COPP --from` instruction to copy from a separate image, eg `COPY --from=nginx:latest ...`
 
 https://docs.docker.com/build/building/multi-stage/#stop-at-a-specific-build-stage
 
@@ -172,3 +172,16 @@ https://docs.docker.com/build/building/best-practices/#entrypoint
 
 
 - The best use for `ENTRYPOINT` is to set the image's main command, allowing that image to be run as though as it was that command, and then use `CMD` as the default flags.
+
+https://docs.docker.com/build/building/best-practices/#user
+
+- If a service can run without privileges, use `USER` to change to a non-root user
+- Start by creating a new user and group
+
+```bash
+RUN groupadd -r postgres && useradd --no-log-init -r -g postgres postgres
+```
+
+https://docs.docker.com/build/building/best-practices/#workdir
+
+- Always use absolute paths for `WORKDIR`
