@@ -107,3 +107,5 @@ pg 326
 - A group of objects that describe how another group of objects should behave
 - The Knowledge Level addresses requirements for software with configurable behaviour, in which the roles and relationships among Entities must be changed at installation or even runtime
 - In an application in which the roles and relationships between Entities varies in different situations, complexity can explode. Neither fully general models nor highly customized ones serves the user's needs. Objects end up with references to other types to cover a variety of cases, or with attributes that are used in different ways in different situations. Or you may end up with many classes that have the same data and behavior, but just have different assembly rules
+- A Knowledge Level separates that self-defining aspect of the model and makes its constraints explicit
+- Create a distinct set of objects that can be used to describe and constrain the structure and behaviour of the basic model. Keep these concerns distinct as two level, one very concrete, the other reflecting rules and knowledge that a user or super-user is able to customize
