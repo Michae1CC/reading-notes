@@ -98,3 +98,12 @@ pg 305
 - When there is a lot of interaction between subdomains in separate packages, either many references will have to be created between packages, which defeats much of the value of the partitioning, or the interaction has to be made more indirect, which makes the model less communicative (harder to understand).
 - Identify the most fundamental conceptual elements in the model and factor them into distinct classes, abstract classes, or interfaces. Design this abstract model so that it expresses most of the interaction between significant components. Place this abstract overall model in its own package, while the specalized, detailed implementation classes are placed in their own package defined by subdomain.
 - The Abstract core should end up looking like the Distillation Document
+
+
+### Knowledge Level
+
+pg 326
+
+- A group of objects that describe how another group of objects should behave
+- The Knowledge Level addresses requirements for software with configurable behaviour, in which the roles and relationships among Entities must be changed at installation or even runtime
+- In an application in which the roles and relationships between Entities varies in different situations, complexity can explode. Neither fully general models nor highly customized ones serves the user's needs. Objects end up with references to other types to cover a variety of cases, or with attributes that are used in different ways in different situations. Or you may end up with many classes that have the same data and behavior, but just have different assembly rules
