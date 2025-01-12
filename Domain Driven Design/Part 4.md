@@ -109,3 +109,15 @@ pg 326
 - In an application in which the roles and relationships between Entities varies in different situations, complexity can explode. Neither fully general models nor highly customized ones serves the user's needs. Objects end up with references to other types to cover a variety of cases, or with attributes that are used in different ways in different situations. Or you may end up with many classes that have the same data and behavior, but just have different assembly rules
 - A Knowledge Level separates that self-defining aspect of the model and makes its constraints explicit
 - Create a distinct set of objects that can be used to describe and constrain the structure and behaviour of the basic model. Keep these concerns distinct as two level, one very concrete, the other reflecting rules and knowledge that a user or super-user is able to customize
+
+
+### Bringing the Strategy Together
+
+pg 339
+
+- When you are tackling a strategic design for the time time on a project, the most important thing is to start from a clear assessment of the current situation. (pg 343)
+	- Draw a context map
+	- Attend to the use of language on the project.
+	- Understand what is important. Is the Core Domain identified? Is there a Domain Vision?
+	- Does the tech of the project work for or against Mode-Driven Design?
+	- Are the devs knowledgeable about the domain?
