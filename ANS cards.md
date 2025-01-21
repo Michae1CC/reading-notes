@@ -1,32 +1,40 @@
 
 ---
-VPC-Endpoints
-Privatelink
-- AWS PrivateLink establishes private connectivity between virtual private clouds (VPC) and supported AWS services, services hosted by other AWS accounts, and supported AWS Marketplace services.
-- You do not need to use an internet gateway, NAT device, AWS Direct Connect connection, or AWS Site-to-Site VPN connection to communicate with the service.
-- Include this image: https://docs.aws.amazon.com/images/vpc/latest/userguide/images/use-cases.png
+ELB
 
-Privatelink Availability
--  A highly available solution can be achieved by deploying multiple endpoints, one in each availability zone inside the consumer VPC.
+Application Load Balancers
+- Layer 7 LB on HTTP and/or HTTPS only (no TCP/UDP/TLS)
+- HTTP/S always terminated on the ALB - no unbroken SSL. A new connection is made to the app.
+- Health checks evaluated app health
 
-Privatelink protocol support
-- Supports IPv4 and TCP only (IPv6 is not supported)
+ALB Rules
+- Rules direct connections which arrive at a listner
+- Processed in prority with a defautl catch all
+- Rule conditions: host-header, http-header, http request method, query-string etc
+- Actions: Forward, redirect, fixed-response, auth
 
-Privatelink networking support
-- Private DNS is supported (e.g. overriding the default public DNS with one which points at the an interface endpoint for the PrivateLink service)
-- You can access PrivateLink services over direct connect, site-to-site VPN and a VPC pier
+NLB Rules
+- Layer 4 LB - TCP, TLS, UDP
+- Health checks just check ICP/TCP Handshake
+- NLBs can have static IPs - useful for whitelisting
+- Forward TCP to instances ... unbroken encryption
+- Used with private link to provide services to other VPCs
 
-Gateway Endpoints
-- Provide private access to S3 and DynamoDB
-- Works by adding a route to the RT which points to the GW Endpoint
-- Associated with one or more subnets
+Connection Draining
+- Controls what happens when instances are unhealthy or deregistered
+- By default all connections are closed and no new connections are made
+- Connections draining allows in-flight requests to complete
 
-Gateway Endpoints access
-- Endpoint policy is used to control what it can access
-- Can't access cross-region services
+Connection Draining Support
+- Only supported on Classic LBs
 
-Gateway Endpoints use cases
-- Prevent Leaky Buckets - S3 Buckets can be set to be private only by allowing access only from a GW endpoint
+Connection Draining Timeout
+- Between 1 and 3600 (default 300)
 
-Gateway Endpoints Availability
-- Regionally resilient by default, don't need to worry about AZ placement
+Deregistration Delay
+- Support on ALB, NLB and GWLBs
+- Defined of the Target Group - NOT the LB
+
+Deregistration Delay Process/Time
+- Stops sending requests to the deregistering targets, existing connections can continue until the completed or deregistration delay is reached
+- Default delay is 300sec (0-3600 seconds)
