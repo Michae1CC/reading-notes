@@ -78,8 +78,6 @@ pg 292
 - Create a separate document to explain the core domain, it describes the Core Domain and the primary interactions among the Core elements
 - Flag the elements of the Core Domain within the primary repository of the model, without particularly trying to elucidate its role. Make it effortless for a developer to know what is in or out of the CORE.
 - Use a distillation document as a guide. When programming changes code that does not require any update to the distillation document, they have fully autonomy
-- When the  distillation document requires changes to stay in touch, either because they are fundamentally changing the Core Domain elements or relationships or because they are changing the boundaries of the Core, then consultation is called for and dissemination of the new model through a new version of the distillation document.
-
 - When a model or code change affects the Distillation Document, it requires consultation with other team members. When the change is made, it requires immediate notification of all members and the dissemination of the new version of the Distillation Document. Other changes can be integrated without consultation or notification and will be encountered by other members in the course of their work.
 
 
