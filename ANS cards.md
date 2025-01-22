@@ -38,3 +38,14 @@ Deregistration Delay
 Deregistration Delay Process/Time
 - Stops sending requests to the deregistering targets, existing connections can continue until the completed or deregistration delay is reached
 - Default delay is 300sec (0-3600 seconds)
+
+X-Forwarded
+- A set of HTTP headers, eg. `X-Forwarded-For: client,proxy1,proxy` (client is the left-most in the list)
+- The header is added/appended by proxies/LBs
+- Supported for ALB and CLB
+
+Proxy Protocol
+- Works at Layer 4
+- An additional layer 4 (tcp) header. Works with a range of protocols (including HTTP and HTTPS)
+- Supported by NLB and CLB
+- End-2-end encryption - e.g. unbroken HTTPS (tcp listener)
