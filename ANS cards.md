@@ -49,3 +49,8 @@ Proxy Protocol
 - An additional layer 4 (tcp) header. Works with a range of protocols (including HTTP and HTTPS)
 - Supported by NLB and CLB
 - End-2-end encryption - e.g. unbroken HTTPS (tcp listener)
+
+LB Security Policies
+- A set of ciphers and protocols which are okay to use on a listener
+- Protocols is just a method of ensuring secure communications and a cipher is an algorithm
+- You control the client => LB policy, the AWS chosen one is used LB => targets is `ELBSecurityPolicy-2016-08`
