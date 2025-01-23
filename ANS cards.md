@@ -54,3 +54,39 @@ LB Security Policies
 - A set of ciphers and protocols which are okay to use on a listener
 - Protocols is just a method of ensuring secure communications and a cipher is an algorithm
 - You control the client => LB policy, the AWS chosen one is used LB => targets is `ELBSecurityPolicy-2016-08`
+
+GWLB
+- Help you run 3rd party appliances for inbound and outbound traffic
+- Balances across multiple backend appliances
+- Traffic and metadata is tunneled using the GENEVE protocol
+- Image from: 7:30  https://learn.cantrill.io/courses/1231680/lectures/34269861
+
+GWLB Components
+- Endpoints - Where traffic enters/leaves via these endpoints
+
+
+---
+Route53
+
+NS Records
+- Delegates a DNS zone to use the given authoritative name servers
+- 1:23, https://learn.cantrill.io/courses/1231680/lectures/31339909
+
+A and AAAA records
+- Map host name to Ipv4/Ipv6 addresses
+
+CNAME Records
+- Alias of one name to another: the DNS lookup will continue by retrying the lookup with the new name, i.e. host to host records
+- 3:46, https://learn.cantrill.io/courses/1231680/lectures/31339909
+
+MX Records
+- List of mail exchange servers that accept email for a domain
+- Lower values in the priority field are high priority, moves to lower priority if the higher are not working
+- 7:02, https://learn.cantrill.io/courses/1231680/lectures/31339909
+
+TXT Records
+- Originally for arbitrary human-readable _text_ in a DNS record.
+- Commonly used to prove domain ownership
+
+DNS TTL
+- A numeric value in seconds set on records that indicates the appropriate time records can be cached on resolver servers
