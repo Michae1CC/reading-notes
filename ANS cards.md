@@ -45,3 +45,13 @@ R53 Simple Routing
 - Use when you want to route requests towards one service
 - Does not support simple routing
 - https://learn.cantrill.io/courses/1231680/lectures/31339800 at 1:25
+
+
+Multi-Value Routing
+- Create many records all with the same name where each record can have an associated health check
+- Up to 8 healthy records are returned
+- Improves availability
+- Not a replacement for load balancing
+- https://learn.cantrill.io/courses/1231680/lectures/31339812 @ end
+
+Weighted Routing
