@@ -54,4 +54,31 @@ Multi-Value Routing
 - Not a replacement for load balancing
 - https://learn.cantrill.io/courses/1231680/lectures/31339812 @ end
 
-Weighted Routing
+
+---
+
+VPC Hybrid Networking
+
+Internet Protocol Security (IPSEC)
+- A secure network protocol suite that authenticates and encrypts packets of data to provide secure encrypted communication between two peers over an Internet Protocol network
+
+IKE Phase 1
+- Authenticate - Pre-shared key (password) / Certificate
+- Using Asymmetric encryption to agree on, and create a shared symmetric key
+- IKE SA created phase 1 tunnel
+- https://learn.cantrill.io/courses/1231680/lectures/31664186 at 9:28
+
+IKE Phase 2
+- Uses the keys agreed in phase 1
+- Agree encryption method, and keys used for bulk data transfer
+- Create IPSEC SA, phase 2 tunnel (running over phase 1)
+
+Policy-based VPNs
+- Rule sets created to match traffic a pair of Security Associations (SAs)
+- Traffic is sent over a pair of security associations, one which is used for each direction of traffic
+- Allows different rules for different types of traffic
+
+Route-based VPNs
+- Target matching based on a prefix (e.g. send traffic to 192.168.0.0/24)
+- Matches a single pair of Security Associations (SAs) for each network prefix
+- Less functionality but it is much simpler to set up
