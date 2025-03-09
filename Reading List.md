@@ -7,10 +7,12 @@
 - Designing Distributed Systems: Patterns and Paradigms for Scalable, Reliable Services Second Edition, Bredan Burns (recommended by Thomas, read near k8s learnings)
 - Test-Driven Development by Example, Kent Beck
 - Analysis Patterns, Martin Fowler
+- Head First Design Patterns, Newman and Robson
 - Working Effectively with Legacy Code, Michael C. Feathers
 - Refactoring, Kent Black & Martin Fowler
 - Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems, Martin Kleppmann (recommended by Thomas)
 - Clean Architecture, Robert Cecil Martin
+- Building Microservices, Newman
 - Software Craftsmanship, Sandro Mancuso
 - Extreme Programming Explained, Kent Black
 - Prometheus: Up & Running
