@@ -22,3 +22,19 @@ pg 48
 - _swap_ will compute _o_f_ and then in an atomic operation, compare _o_ with _o_h_ and if they are the same, update _o_ with _o_f_
 - They mention here that _swap_ here may attempt to update _o_ again, but this probably isn't always the best thing to do
 
+
+#### Open-Closed Principal
+
+pg 131
+
+- Modules should be open for extension, but closed for modification, i.e. extending or changing behavior does not require you to modify code
+- It requires that a high-level policy access the low-level detail through an abstraction layer
+- In OO programs, we typically create the abstraction layer through polymorphic interfaces, high-level policies are given access through those interfaces to the low-level details that implement, or inherit from, those interfaces.
+- In dynamically typed OO languages like Python, these interfaces are duck types. _Duck types_ have no particular syntax within the language. They are simply sets of function signatures called by the high-level policies and implemented by low-level details. The dynamic type system determines the polymorphic dispatch at runtime by matching those signatures.
+
+- _Multi-methods_ are another form of duck-typing, because they create a loose grouping of methods that are dynamically dispatched based on their function signature
+
+
+#### Liskov Substitution Principal
+
+- A subtype must be substitutable for its base type in any program that uses the base type.

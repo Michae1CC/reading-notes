@@ -1,4 +1,11 @@
 
+Storage Gateway
+---
+
+Storage Gateway - File 
+- Bridges on-prem file storage and S3
+- Mount Points available via NFS or SMB
+- Files stored into a mount point are visible as objects in a S3 bucket
 
 IAM
 ---
