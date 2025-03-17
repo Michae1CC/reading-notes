@@ -1,16 +1,6 @@
 
 ### Network and Billing
 ---
-Cost of data transfer between a public instance and public services
-- Public instance => IGW => Public service is free
-
-Cost of data transfer between a private instance and public services
-- Private instance => NAT => Public service - Extra charges apply to Private instance => NAT GW
-
-Cost to/from IGW to public internet/cross region services
-- Anywhere => IGW - always free
-- IGW => public internet - has charge based on the service and region of the service
-- IGW => cross region service - fee based on source and dest region
 
 Cost for inter-VPC networking
 - Intra AZ networking - free (only applies when using private IP addressing)
