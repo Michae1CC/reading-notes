@@ -12,6 +12,10 @@ Domain Driven Design - Side Effect-Free Functions, pg 175
 - Often alternative models and designs that do not call for an existing object to be modified at all. Just create a new Value Object
 - Control side effects by moving complex logic into Value Objects with conceptual definitions fitting the responsibility.
 
+pg 41
+
+- Laziness decouples _what_ you need to do from _how much_ you need to do it. For example you can write a program that creates a lazy sequence without knowing how big a sequence your users are going to want. Your users can determine how much of your sequence they need.
+
 #### Software Transactional Memory (STM)
 
 pg 48
@@ -21,7 +25,6 @@ pg 48
 - STM avoids this problem by _not_ and instead using a commit/rollback technique. If _swap (o,f)_ updates the object _o_ with _o_f = f(o)_, _swap_ will hold the current state of _o_ in _o_h_
 - _swap_ will compute _o_f_ and then in an atomic operation, compare _o_ with _o_h_ and if they are the same, update _o_ with _o_f_
 - They mention here that _swap_ here may attempt to update _o_ again, but this probably isn't always the best thing to do
-
 
 #### Open-Closed Principal
 
@@ -34,7 +37,17 @@ pg 131
 
 - _Multi-methods_ are another form of duck-typing, because they create a loose grouping of methods that are dynamically dispatched based on their function signature
 
-
 #### Liskov Substitution Principal
 
 - A subtype must be substitutable for its base type in any program that uses the base type.
+
+#### Single Responsibility
+
+pg 126
+
+- People making changes to a system can be separated into two groups - roles and actors
+- Actors is a person or group who require the same things from the system and perform the same changes
+- Different actors can have different needs
+- When a module is responsible to more than one actor, the interference often leads to the design smell of fragility causing unexpected changes when simple changes are made
+- A violation of SRP can be as simple as mixing GUI formatting and business rule code together in the same module or as complex as using stored procedures in the database to implement business rules
+- Has an example of a business rule being tested with parsing rules
