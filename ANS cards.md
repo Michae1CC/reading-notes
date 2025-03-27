@@ -1,17 +1,4 @@
 
-### Network and Billing
----
-
-Cost for inter-VPC networking
-- Intra AZ networking - free (only applies when using private IP addressing)
-- Inter AZ networking -  costs for inbound and outbound
-
-VPC peer costs
-- Peering over the same AZ - free
-- Peer cross AZ - INGRESS and EGRESS charges
-- Peer cross region - EGRESS from each respective region is charged, INGRESS into regions are free (works out to be similar to cross AZ charges)
-
-
 Storage Gateway
 ---
 
