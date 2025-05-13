@@ -21,3 +21,14 @@ pg 39
 pg 40
 
 - Methods as finders wrap SQL select statements with a method-structured interface (eg `findForCustomer(customer)`)
+- Never do repeated queries on the same table to get multiple rows. It's almost always better to pull back too much data than too little
+
+### Database structure with inheritance
+
+pg 45
+
+- Single Table - One table for each concrete class
+- Concrete Table - One table for each concrete class
+- Class Table Inheritance - One table per class in the hierarchy
+- With any change to the superclass you have to remember to alter all the tables
+- Altering the hierarchy
