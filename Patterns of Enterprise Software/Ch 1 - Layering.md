@@ -33,7 +33,7 @@ pg 21
 - How you separate (the layers) depends on how complex the application is. A simple script to pull data from the database and display it in a Web page may all be one procedure. I would still endeavor to separate the three layers in separate sub routines. As the system gets more complex, I would break the three layers into separate classes. As complexity increased I would divide the classes into separate packages
 - The domain and data source should never be dependent on presentation, i.e there should be no subroutine call from the domain or data source code into the presentation code
 
-.
+
 ## Ch 2 - Organizing Domain Logic
 
 pg 25
