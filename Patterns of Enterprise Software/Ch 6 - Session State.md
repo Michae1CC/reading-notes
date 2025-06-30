@@ -22,3 +22,9 @@ pg 84
 	- Server Session state: May be as simple as holding data in memory. Usually there's a mechanism for storing the session state somewhere more durable as a serialized object
 	- Database session: Also server-side storage involves breaking up data into tables and fields and storing it in the database much as you would store more lasting data.
 - Session migration allows a session to move from server to server as one server handles one request and other servers take on the others. Its opposite to server affinity, which forces one server to handle requests for a particular session. Server migrations leads to better balancing of your servers, particularly if your sessions are long.
+
+- Ways to store the session state
+	- Client Session State - Store the data on the client. There are several ways to do this: encoding the data in URL for Web presentation, using cookies, serializing data into some hidden field on a Web form
+	- Server Session State - May be as simple as holding the data in mem between requests. The object can be stored on the app server's local file system, or it can be placed in a shared data source.
+	- Database Session State - Is also server-side storage, but it involves breaking up the data into tables and fields and storing it in the database.
+
