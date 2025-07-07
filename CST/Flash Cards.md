@@ -1,16 +1,4 @@
 
-Shift Left Security
-- Incorporating security requirements, security design and security testing earlier in the Software Development Lifecycle (SDLC).
-
-Goals of Shift Left Security
-- Identify security design flaws & vulnerabilities as early as possible in the development lifecycle.
-- Ensure secure design principles are applied during the design phase
-
-Shift Left Security Common Practices
-- Security Policy
-- Threat Modelling
-- Secure Coding Practices
-
 Shift Left Security - Separation of Privilege
 - For highly sensitive operations, split responsibilities between two or more people
 - No single person has complete control; requires collusion to exploit
