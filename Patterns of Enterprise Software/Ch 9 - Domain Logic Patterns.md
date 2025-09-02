@@ -20,7 +20,7 @@ Layers
 - "Application Logic" sometimes referred to as "workflow logic"
 - Implementation Variations:
 	- In the domain facade approach a _Service Layer_ is implemented as a set of this facades over a Domain model. The classes implementing the facades don't implement and business logic. Rather, the _Domain Model_ implements all of the business logic. The thin facades establish a boundary and set of operations through which client layers interact with the application, exhibiting the defining characteristics of Service Layer.
-	- In the operations script approach a Service Layer is implemented as a set of thicker classes tat directly implement application logic but delegate to encapsulated domain domain object classes for domain logic.
+	- In the operations script approach a Service Layer is implemented as a set of thicker classes that directly implement application logic but delegate to encapsulated domain domain object classes for domain logic.
 - The interface of a service layer class is course grained by definition, since it declares a set of operations applications operations available to interfacing client layers. Therefore Service Layer classes are well suited to remote invocation from an interface granularity perspective.
 - Operations needed by the Service Layer are identified by the needs of the Service Layers clients - typically a user interface.
 
