@@ -12,6 +12,7 @@
 - Refactoring, Kent Black & Martin Fowler
 - Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems, Martin Kleppmann (recommended by Thomas)
 - Clean Architecture, Robert Cecil Martin
+- Computer Systems - A programmer's Prespective, Randal E. Bryant
 - Building Microservices, Newman
 - Software Craftsmanship, Sandro Mancuso
 - Extreme Programming Explained, Kent Black
