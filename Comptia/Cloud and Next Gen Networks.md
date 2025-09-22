@@ -17,3 +17,21 @@ Data Centre Basics
 - VPN Tunnels don't offer all of the features that we actually need in order to run our data center effectively, for instance, the ability to pass multicast traffic. VPNs do a great job of unicast traffic from one device to another but no multicast. Multicast traffic is used to manage the data centre itself.
 - GRE Tunnel - Allows for multicasting traffic. Doesn't do encryption, we can encrypt our GRE tunnel with IPsec. Allows us to encapsulate VXLAN traffic
 - VXLAN - Allows us to connect two data centers together as a layer 2 connection. From an application's perspective (up at the application layer) our data center, which is in two locations, appears to be in the one single location.
+
+Software Defined Networks
+- Layers:
+	- Application Layer - Where admin and devs to add utilities
+	- Control Layer - Responsible for moving traffic around and accepting connections
+	- Infra Layer - Consists of routers and switches connected with certain policies
+
+SAN connections
+- Connecting to SAN Servers:
+	- iSCSI - A method we can use to connect our SAN to our servers, uses TCP/IP to make TCP/IP connections between the SAN and servers
+
+Software Defined Networks
+- Hides away all of the infra so that people running applications can have an easier time configuring the network
+- Becomes Transport agnostic - the SDN does not really care about the underlying network, other than it works
+
+Secure Access Secure Edge
+- Never trust always verify
+- Security Service Edge - Users can be connecting to our corporate resources from lots of different locations

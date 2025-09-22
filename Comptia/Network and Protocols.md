@@ -38,12 +38,3 @@ WAN Technologies
 SDWAN
 - A software that sets up routing and some tunnels that allow all the facilities in an organization to communicate in the effective way possible. These are virtual tunnels that connect one building to another without worrying about the actual path through the network. These tunnels are called Multipoint Generic Routing Encapsulation (MGRE)
 
-Software Defined Networks
-- Layers:
-	- Application Layer - Where admin and devs to add utilities
-	- Control Layer - Responsible for moving traffic around and accepting connections
-	- Infra Layer - Consists of routers and switches connected with certain policies
-
-SAN connections
-- Connecting to SAN Servers:
-	- iSCSI - A method we can use to connect our SAN to our servers, uses TCP/IP to make TCP/IP connections between the SAN and servers
