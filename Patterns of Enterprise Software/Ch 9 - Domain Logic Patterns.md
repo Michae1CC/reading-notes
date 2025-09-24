@@ -1,10 +1,13 @@
 
+
 pg 110
 
 - Most business applications can be thought of as a series of transactions
 - A Transaction Script organizes all this logic primarily as a single procedure, making calls directly to the database or through a thin database wrapper
 - You can organize your Transaction Scripts into classes in two ways. The most common is to have several Transactions Scripts in a single class, where each class defines a subject area. The other way is to have each Transaction Script in its own class, using the Command Pattern
 - One particular problem to watch for is its duplication between transactions. Since the whole point is to handle one transaction, any common code tends to be duplicated. Careful refactoring can alleviate many of these problems, but more complex business domains need to build a Domain Model.
+- With the transaction script the domain logic is primarily organised by the transactions that you carry out with the system
+- Where you put the Transaction Script will depend on how you organize your layers. At the very least put them in distinct subroutines; better still, put them in classes separate from those that handle presentation and data source
 
 pg 133
 
@@ -28,3 +31,4 @@ pg 137
 
 - The benefit of the Service Layer is that it defines a common set of application operations available to many kinds of clients and it coordinates and application's response in each operation
 - You probably don't need a service layer if your applications business logic will only have one kind of client - say a user interface - and its use case responses don't involve multiple transactional resources.
+
