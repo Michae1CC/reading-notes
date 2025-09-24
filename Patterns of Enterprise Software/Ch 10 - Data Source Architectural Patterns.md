@@ -67,3 +67,12 @@ pg 169
 - The problem with a rich constructor is that you have to be aware of cyclic references
 
 - The primary occasion for using a Data Mapper is when you want the database schema and the object to evolve independently. The most common case for this is with a Domain Model.
+
+
+### Creating an Empty Object
+
+pg 181
+
+- There are two basic approaches for loading an object
+	- 1 - Create a fully valid object with a constructor
+	- 2 - Create an empty object and load it with the setters later
