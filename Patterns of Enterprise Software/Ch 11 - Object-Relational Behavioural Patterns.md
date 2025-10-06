@@ -27,3 +27,36 @@ class EditAlbumScript {
 	}
 }
 ```
+
+
+### Identity Map
+
+pg 196
+
+- A series of maps containing objects that have been pulled from the database
+- An explicit Identity Map is accessed with distinct methods for each kind of object, such as `findPerson(1)`
+- A generic map uses a single method for all kinds of objects, with perhaps a parameter to indicate which kind of object you need, such as `find("Person", 1)`
+- Used to manage any object brought from a database and modified. You don't want a situation where two in-memory objects correspond to a single database record - you might modify the two records inconsistently and thus confuse the database mapping.
+- The identity maps also acts as a cache for database reads
+- Identity Map helps avoid conflicts within a single session, but it doesn't do anything to handle conflicts that cross session
+
+
+### Lazy Load
+
+pg 200
+
+- Lazy Load interrupts this loading process for the moment, leaving a marker in the object structure so that if the data is needed it can be loaded only when it is used
+
+#### Methods for implementation
+- Lazy initialization - the simplest approach. Uses a null to signal a field hasn't been loaded yet. Does force a dependency between the object and the database and best works for Active Record, Table Data Gateway and Row Data Gateway.
+```java
+class Supplier...
+	public List getProducts() {
+		if (products == null) products = Product.findForSupplier(getID());
+		return products;
+	}
+}
+```
+- Virtual Proxy - An object that looks like the object that should be in the field that doesn't actually contain anything. It looks exactly like the object that's suppose to be there
+- Ghost - The real object in a partial state, think every field is lazy-initialized in one fell swoop
+- Lazy Load is all about deciding how much you want to pull back from the database as you load an object and how many database calls that will require. It's usually pointless to use Lazy Load on a field that's stored in the same row as the rest of the object, because most of the time it doesn't cost any more to bring back extra data in a call
