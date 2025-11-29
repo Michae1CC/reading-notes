@@ -16,6 +16,13 @@
 - Building Microservices, Newman
 - Software Craftsmanship, Sandro Mancuso
 - Extreme Programming Explained, Kent Black
+- Structure and Interpretation of Computer Programs, Abelson
+- Structured Analysis and System Specification, DeMarco
+- Design Patterns, Gamma, Heml
+- Analysis Patterns, Fowler
+- Structured Programming, Dijkstra
+- Object Oriented Software Construction, Meyer
+- The Art of Computer Programming, Knuth
 - Prometheus: Up & Running
 
 - Building good apps (I think linked in docker docs): https://12factor.net/processes
