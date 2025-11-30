@@ -65,3 +65,5 @@ class Employee {
 ### Dependent Mapping
 
 pg 262
+
+- The basic idea behind Dependent Mapping is that one class (the dependent) relies upon some other class (the owner) for its database persistence. Each dependent can have only one owner and must have one owner.
