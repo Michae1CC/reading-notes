@@ -68,6 +68,21 @@ pg 262
 
 - The basic idea behind Dependent Mapping is that one class (the dependent) relies upon some other class (the owner) for its database persistence. Each dependent can have only one owner and must have one owner.
 
+### Embedded Value
+
+pg 268
+
+- An Embedded Value maps the values of an object to fields in the record of the object's owner
+- For example, if an employment object the result fields in those objects map to fields in the employment table rather than make new records
+- The simplest cases for Embedded Value are clear, simple Value Objects like money and date range. Since Value Objects don't have identity, you can create and destroy them easily without worrying about such things as Identity Maps to keep them all in sync. Indeed, all Value Objects should be persisted as Embedded Value, since you never want a table for them there.
+- The grey area is in whether it's worth storing reference objects, such as an order and a shipping object, using Embedded Value. The principal question here is whether the shipping data has any relevance outside the context of the order. One issue is the loading and saving. If you only load the shipping data into mem when you load the order, that's an argument for saving both in the same table
+
 ### Serialized LOB
 
 pg 272
+
+- Saves a graph of objects by serializing them into a single large object, which stores in a database field.
+- There are two way to do serialization, as a binary BLOB or as textual characters CLOB
+- BLOB
+	- Advantages - Uses a small amount of space
+	- Disadvantages - Your database must support a binary data type and you can't reconstruct the graph without the object.
