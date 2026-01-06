@@ -86,3 +86,59 @@ pg 272
 - BLOB
 	- Advantages - Uses a small amount of space
 	- Disadvantages - Your database must support a binary data type and you can't reconstruct the graph without the object.
+
+
+### Single Table Inheritance
+
+pg 278
+
+- When mapping to a relation database, we try to minimize the joins that can quickly mount up when processing an inheritance structure in multiple tables
+- Single table inheritance maps all fields of all classes of an inheritance structure into a single table
+- Strengths
+	- There's only a single table to worry about on the database
+	- There are no joins in retrieving data
+	- Any refactoring that pushes fields up or down the hierarchy doesn't require you to change the database
+- Weaknesses
+	- Fields are sometimes relevant and sometimes not, which can be confusing to people using the table directly
+	- The single table may end up being too large, with many indexes and frequent locking, which may hurt performance
+	- You only have a single namespace for fields, so you have to be sure that you don't use the same name for different fields. Compound names with the name of the class as a prefix of suffix helps here
+- You don't need to use one form of inheritance mapping for your whole hierarchy. It's perfectly fine to map half a dozen similar classes in a single table, as long as use Concrete Table Inheritance for any classes that have a lot of specific data
+
+### Class Table Inheritance
+
+pg 285
+
+- Class Table Inheritance support database structures that map clearly to the objects and allow links anywhere in the inheritance structure by using on database table per class in the inheritance structure
+- Has one table per class in the domain model - the fields in the domain class map directly to fields in the corresponding tables
+- A common primary key is used to link is used to link corresponding rows of the database tables
+- Strengths
+	- All columns are relevant for every row so tables are easier to understand and don't waste space
+	- The relationship between the domain model and database is very straight forward
+- Weaknesses
+	- You need to touch multiple tables to load the object, which means a join or multiple queries and sewing memory
+	- Any refactoring of fields up or down the hierarchy causes database changes
+	- The supertype tables may become a bottleneck because they have to be accessed frequently
+	- The high normalization may make it hard to understand for ad queries
+
+### Concrete Table Inheritance
+
+pg 293
+
+- Represents an inheritance hierarchy of classes with one table per concrete class in the hierarchy
+- Uses one db table for each concrete class in the hierarchy
+- Strengths
+	- Each table is self-contained and has no irrelevant fields. As a result is makes good sense when used by other applications that aren't using the objects
+	- There are no joins to do when reading the data from the concrete mappers
+	- Each table is accessed only when that class is accessed, which can spread the access load
+- Weaknesses
+	- Primary keys can be difficult to handle
+	- You can't enforce database relationships to abstract classes
+	- If fields on the domain classes are pushed up or down the hierarchy you have to alter the table definitions
+	- If a super class field changes, you need to change each table that has this field because the superclass field are duplicated across the tables
+
+
+### Inheritance Mappers
+
+pg 302
+
+- A structure to organize db mappers that handle inheritance hierarchies
