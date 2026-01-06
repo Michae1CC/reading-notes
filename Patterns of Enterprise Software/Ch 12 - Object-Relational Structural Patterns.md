@@ -86,7 +86,10 @@ pg 272
 - BLOB
 	- Advantages - Uses a small amount of space
 	- Disadvantages - Your database must support a binary data type and you can't reconstruct the graph without the object.
-
+- CLOB
+	- Serialize information into a text string that carries all the information you need
+	- Disadvantages - Requires more space. Duplication issues.
+- Works best when you can chop out a piece of the object model and use it to represent the LOB. Think of a LOB as a way to take a bunch of objects that aren't likely to be queried from any SQL route outside the application.
 
 ### Single Table Inheritance
 
@@ -142,3 +145,4 @@ pg 293
 pg 302
 
 - A structure to organize db mappers that handle inheritance hierarchies
+	- Disadvantages - Your database must support a binary data type and you can't reconstruct the graph without the object. Another problem is versioning, if you change the department class, you may not be able to read all its previous serializations; since data can live in the database for a long time
