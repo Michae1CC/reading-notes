@@ -17,3 +17,14 @@ pg 316
 - A Query object is an application of the Interpreter pattern geared to represent a SQL query
 - Allows a client to form queries of various kinds and to turn those object structures into the appropriate SQL string
 - You only really need them when you're using Domain Model and Data Mapper - you also really need Metadata Mapping to make serious use of them
+
+### Repository
+
+pg 322
+
+- Mediates between the domain and data mapping layers using a collection-like interface for accessing domain objects
+- Clients create a criteria object specifying the characteristics of the objects they want returned from a query - for example a person by name
+- To code that uses a repository, it appears as a simple in-memory collection of domain objects
+- Repository combines Metadata Mapping with Query Object to automatically generate SQL code from the criteria
+- Repository reduces the amount of code needed to deal with all querying that goes on. Repository promotes the Specification pattern, which encapsulates the query to be performed in a pure object-oriented way.
+- Another example where Repository might be useful is when a data feed is used as a source of domain objects - say an XML stream over a network.
