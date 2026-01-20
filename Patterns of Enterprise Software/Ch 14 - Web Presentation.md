@@ -36,3 +36,15 @@ pg 344
 	- The web handler is the object that actually receives post or get requests from the Web server. It pulls just enough information from the URL and the request to decide what kind of action to initiate and then delegates to a command to carry out the action
 	- The Web handler itself is usually a fairly simple program that does nothing other decide which command to run either statically or dynamically
 - Only one Front Controller has to be configured into the Web server, which can be easily enhanced with decorators (for auth, encoding, internalization)
+
+
+### Two Step View
+
+pg 365
+
+- Turns domain data into HTML in two steps: first by forming some kind of logical page, then rendering the logical page into HTML
+- You may want to make global changes to the appearance of the sire easily, but common approachers using Template View or Transform View make this difficult because presentation decisions are often difficult across multiple pages or transform modules.
+- Two Step View deals with this problem by splitting the transformation into two stages. The first transforms the model data into a logical presentation without any specific formatting; the second converts that logical presentation with the actual formatting needed
+- The first stage assembles the information in a logical screen structure that is suggestive of the display elements yet contains no HTML
+- The second stage takes the presentation oriented structure and renders it into HTML
+- This presentation oriented structure is assembled by specific code written for each screen
