@@ -37,6 +37,24 @@ pg 344
 	- The Web handler itself is usually a fairly simple program that does nothing other decide which command to run either statically or dynamically
 - Only one Front Controller has to be configured into the Web server, which can be easily enhanced with decorators (for auth, encoding, internalization)
 
+### Template View
+
+pg 350
+
+- Renders information into HTML by embedding markers in an HTML page.
+- The basic idea of Template View is to embed markers into a static HTML page when it's written. When the page is used to service a request, the markers are replaced by the results of some computation , such as a database query. This way the page can be laid out in the usual manner
+- Embedding markers:
+	- HTML-like tags
+	- WYSIWYG
+
+### Transform View
+
+pg 361
+
+- A view that processes domain data element by element and transforms it into HTML.
+- Using Transform View means thinking of this as a transformation where you have the model's data as input and its HTML as output
+- The key difference between Transform View and Template View is the way in which the view is organized
+- A Template View is organized around the output
 
 ### Two Step View
 
