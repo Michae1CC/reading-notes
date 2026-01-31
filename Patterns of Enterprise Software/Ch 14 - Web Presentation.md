@@ -66,3 +66,8 @@ pg 365
 - The first stage assembles the information in a logical screen structure that is suggestive of the display elements yet contains no HTML
 - The second stage takes the presentation oriented structure and renders it into HTML
 - This presentation oriented structure is assembled by specific code written for each screen
+
+
+### Application Controller
+
+pg 379
