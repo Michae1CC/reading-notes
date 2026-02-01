@@ -71,3 +71,11 @@ pg 365
 ### Application Controller
 
 pg 379
+
+- An application controller has two main responsibilities:
+	- Deciding which domain logic to run
+	- Deciding the view with which to display the response
+- It typically holds two structured collections of class references, one domain commands to execute against in the domain layer and one of views
+- You need to decide how much of the Application Controller is separated out from the rest of the presentation
+- An application controller haw two collections of references to classes, one for domain logic and one for view
+- Preferable for application controller to have no links to the UI machinery since it makes it possible to test the Application Controller independently from the UI, which is a major benefit
