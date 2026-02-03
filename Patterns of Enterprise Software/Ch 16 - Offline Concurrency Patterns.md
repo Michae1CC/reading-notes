@@ -12,3 +12,10 @@ pg 415
 - Often implementing Optimistic Offline Lock is left at including the version in UPDATE and DELETE statements, but this fails to address the problem of an inconsistent read
 - Concurrency management is as much a domain issue as it is a technical one
 - Appropriate when the chance of conflict between any two business transactions is low
+
+
+### Pessimistic Offline Lock
+
+pg 426
+
+- Prevents conflicts between concurrent business transactions by allowing only one business transaction at a time to access data
