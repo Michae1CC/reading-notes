@@ -19,3 +19,18 @@ pg 415
 pg 426
 
 - Prevents conflicts between concurrent business transactions by allowing only one business transaction at a time to access data
+- Implemented in three phases:
+	- Determining what type of lock you need
+	- Building a lock manager
+	- Defining procedures for a business transaction with these locks
+- Exclusive write lock - require only that a business transaction acquire a lock in order to edit session data. This avoids conflict by not allowing two business transactions to make changes to the same record simultaneously. Ignores reading of data
+- It if becomes critical that a business transaction must always have the most recent data, regardless of its intention to edit, use the exclusive read lock
+- Read/write lock
+	- Are mutually exclusive, i.e. a record can't be write-locked if any business transaction owns a read lock on it; it can't be read-locked if any business transaction owns a write lock on it
+	- Concurrent read locks are acceptable. The existence of single read lock prevents any business transaction from editing the record.
+- It's not a bad idea to include Pessimistic Offline Lock in your Domain Model
+- What is usually locked is actually the ID, or primary key that we use to find the objects
+- The simplest rule for releasing a lock prior to completion might be allowable, depending on your lock type and your intention to use that object again within the transaction
+- If a client machine crashes in the middle of a transaction, that lost transaction is unable to complete and release anu owned locks
+	- Timeouts can be implemented by registering a utility object that releases all locks when the HTTP session becomes invalid
+	- Another option is to associate a timestamp wit each lock and consider invalid any lock older than a certain age
