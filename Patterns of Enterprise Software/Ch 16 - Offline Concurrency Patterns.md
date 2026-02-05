@@ -34,3 +34,15 @@ pg 426
 - If a client machine crashes in the middle of a transaction, that lost transaction is unable to complete and release anu owned locks
 	- Timeouts can be implemented by registering a utility object that releases all locks when the HTTP session becomes invalid
 	- Another option is to associate a timestamp wit each lock and consider invalid any lock older than a certain age
+- Pessimistic Offline Lock is appropriate when the chance of conflict between concurrent sessions is high - a user should never have to throw away work
+
+
+### Course grained lock
+
+pg 438
+
+- Locks a set of related objects with a single lock
+- Simplifies the locking action and frees you from having to load all the members of a group in order to lock them
+- First step in implementing Coarse-Grained Lock is to create a single point of contention for locking a group of objects.
+- This makes only one lock necessary for locking the entire set, then you provide the shortest path possible to finding that single lock point in order to minimize the group members that must be identified and possibly loaded into memory
+- Aggregate - a cluster of associated objects that we treat as a unit for data changes. Each aggregate has a root that provides the only access point to members of the set and a boundary that defines what's included in the set
