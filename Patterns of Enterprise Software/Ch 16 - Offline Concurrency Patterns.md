@@ -46,3 +46,18 @@ pg 438
 - First step in implementing Coarse-Grained Lock is to create a single point of contention for locking a group of objects.
 - This makes only one lock necessary for locking the entire set, then you provide the shortest path possible to finding that single lock point in order to minimize the group members that must be identified and possibly loaded into memory
 - Aggregate - a cluster of associated objects that we treat as a unit for data changes. Each aggregate has a root that provides the only access point to members of the set and a boundary that defines what's included in the set
+- Used for satisfying business requirements
+
+
+### Implicit Lock
+
+pg 449
+
+- Allows framework or layer supertype code to acquire offline locks
+- The key to any locking scheme is that there are no gaps - forgetting to write a single line of code that acquires a lock can render an entire offline locking scheme useless
+- Generally, if an item might be locked anywhere it must be locked everywhere
+- Locking tasks that cannot be overlooked should be handled not explicitly by devs but implicitly by the application
+- Implementing Implicit Lock is a matter of factoring your code such that any locking mechanism that absolutely cannot be skipped can be carried out by your application framework
+- If devs are using Implicit Lock with a pessimistic locking scheme that waits for locks, they still need to think about deadlock possibilities
+- The danger with Implicit Lock is that business transactions can fail in unexpected ways once devs stop thinking about locking
+- Implicit Lock should be used in all the simplest of applications that have no concept of framework
