@@ -81,3 +81,21 @@ pg 480
 - You can have different Registries for different scopes, but you can also have a single Registry in which different methods are at different scopes.
 - Singletons are widely used in single-threaded apps, but can be a problem for multi-threaded apps. This is because it's too easy for multiple threads to manipulate the same object in unpredictable ways
 - A common kind of registry is thread scoped
+
+### Value Object
+
+pg 486
+
+- A small simple object, like money or a date range, whose equality isn't based on identity
+- Value Objects are small objects, such as a money object or a date, while reference objects are large, such as a an order or a customer. The key difference is how they deal with equality. A reference object uses identity as the basis for equality - maybe the identity within the programming system, such as the built-in identity of OO programming languages, or maybe some kind of ID number
+- Treat something as a Value Object when you're basing equality on something other than identity. It's worth considering this for any small object that's easy to create.
+
+
+### Money
+
+pg 488
+
+- Represents a monetary value
+- You can store the amount as either an integral type or a fixed decimal type. Decimal type is easier for some manipulations, the integral for others
+- You should avoid any kind of floating point type, as that will introduce the kind of rounding problems that Money is intended to avoid
+- Used for pretty much all numeric calculation in object-oriented environments
