@@ -57,3 +57,27 @@ class DomainObject {
 	public DomainObject() {}
 }
 ```
+
+
+### Separated Interface
+
+pg 476
+
+- Defines an interface in a separate package from its implementation
+- As you develop a system, you can improve the quality of its design by reducing the coupling between the system's parts - a good way to do this is to group the classes into packages and control the dependencies between them
+- Use a separated interface to define in one package but implement it in another - this way a client that needs the dependency to the interface can be completely unaware of the implementation
+- One awkward thing about separate interfaces is how to instantiate the implementation. I usually requires knowledge of the implementation class. The common approach is to use a separate factory object, where again there is a Separated Interface for the factory
+- Use separated interface when you need to break a dependency between two parts of the system
+	- You've built some abstract code for common cases into a framework package that needs to call some particular application code
+	- You have some code in one layer that needs to call code in another layer that it shouldn't see, such as domain code calling a Data Mapper
+	- You need to call functions developed by another development group but don't want a dependency into their APIs
+
+### Registry
+
+pg 480
+
+- A well-known object that other objects can use to find common objects and services
+- A registry is essentially a global object, or at least it looks like one - even if it isn't as global as it may appear
+- You can have different Registries for different scopes, but you can also have a single Registry in which different methods are at different scopes.
+- Singletons are widely used in single-threaded apps, but can be a problem for multi-threaded apps. This is because it's too easy for multiple threads to manipulate the same object in unpredictable ways
+- A common kind of registry is thread scoped
