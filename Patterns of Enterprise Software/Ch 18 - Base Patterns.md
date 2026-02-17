@@ -90,7 +90,6 @@ pg 486
 - Value Objects are small objects, such as a money object or a date, while reference objects are large, such as a an order or a customer. The key difference is how they deal with equality. A reference object uses identity as the basis for equality - maybe the identity within the programming system, such as the built-in identity of OO programming languages, or maybe some kind of ID number
 - Treat something as a Value Object when you're basing equality on something other than identity. It's worth considering this for any small object that's easy to create.
 
-
 ### Money
 
 pg 488
@@ -99,3 +98,11 @@ pg 488
 - You can store the amount as either an integral type or a fixed decimal type. Decimal type is easier for some manipulations, the integral for others
 - You should avoid any kind of floating point type, as that will introduce the kind of rounding problems that Money is intended to avoid
 - Used for pretty much all numeric calculation in object-oriented environments
+
+### Special Case
+
+pg 496
+
+- A subclass that provides special behaviour for particular cases.
+- The basic idea is to create a subclass to handle the Special Case
+- Use whenever you have multiple places in the system that have the same behaviour after a conditional check for a particular class instance or the same behaviour after a null check
