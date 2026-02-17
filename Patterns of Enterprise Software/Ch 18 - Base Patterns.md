@@ -107,3 +107,16 @@ pg 496
 - The basic idea is to create a subclass to handle the Special Case
 - IEEE 754 floating-point arthimetic offers good examples of Special Case with positive infinity, negative infinity and not-a-number
 - Use whenever you have multiple places in the system that have the same behaviour after a conditional check for a particular class instance or the same behaviour after a null check
+
+
+### Plugin
+
+pg 499
+
+- Links classes during configuration rather than compilation
+- Configuration shouldn't be scattered throughout your application, nor should it require a rebuild or redeployment - plugin solves both problems by providing centralized, runtime configuration
+- The first thing to do is define with a Separated Interface any behaviours that will have different implementations based on runtime env. Beyond that we use the basic factory pattern, only with a few special requirements
+- The plugin factory requires its linking instructions to be stated at a single, external point in order that configuration can be easily managed
+- Additionally, the linking to implementations must occur dynamically at runtime rather than during compilation, so that reconfiguration won't require a rebuild.
+- A text file works quite well as the means of stating linking rules. The Plugin factory will simply read the text file, look for an entry specifying the implementation of a requested interface, and return that implementation
+- Use a plugin whenever you have behaviours that require different implementations based on runtime environment.
