@@ -105,4 +105,5 @@ pg 496
 
 - A subclass that provides special behaviour for particular cases.
 - The basic idea is to create a subclass to handle the Special Case
+- IEEE 754 floating-point arthimetic offers good examples of Special Case with positive infinity, negative infinity and not-a-number
 - Use whenever you have multiple places in the system that have the same behaviour after a conditional check for a particular class instance or the same behaviour after a null check
