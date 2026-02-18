@@ -120,3 +120,16 @@ pg 499
 - Additionally, the linking to implementations must occur dynamically at runtime rather than during compilation, so that reconfiguration won't require a rebuild.
 - A text file works quite well as the means of stating linking rules. The Plugin factory will simply read the text file, look for an entry specifying the implementation of a requested interface, and return that implementation
 - Use a plugin whenever you have behaviours that require different implementations based on runtime environment.
+
+### Record Set
+
+pg 508
+
+- In memory representation of tabular data
+- The idea of a Record Set is to provide an in-memory structure that looks exactly like the result of an SQL query but can be generated and manipulated by the other parts of the system
+- Generally provided by the vendor of the software platform you're working with
+- The first essential element is that it looks exactly like the result of a database query
+- Most Record Set implementations use an implicit interface - this means that to get information out of a Record Set you invoke a generic method with an argument to indicate which field you want
+- An explicit interface requires a real reservation class with define methods and properties
+- Implicit interfaces are flexible in that you can use a generic Record Set for any kind of data. This saves you having to write a new class every time you define a new kind of Record Set
+- The value of Record Set comes from having an environment that relies on it as a common way of manipulating data
