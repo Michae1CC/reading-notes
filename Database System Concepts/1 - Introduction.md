@@ -1,0 +1,34 @@
+
+pg 1
+
+- A _Database-Management System_ (DBMS) is a collection of interrelated data and a set of programs to access those data.
+- The collection of data, usually referred to as the _database_, contains information relevant to an enterprise.
+- Broadly speaking there are two modes in which databases are used:
+	- The first mode is to support _online transaction processing_, where a large number of users use the database, with each user retrieving small amounts of data, and performing small updates.
+	- The second mode is to support data analytics, that is, the processing of data to draw conclusions, and infer rules or decisions procedures, which are then used to drive business decisions.
+- _Data Inconsistency_, various copies of the same data may no longer agree
+- _Atomic Transaction_ A transaction that happens completely or not at all
+- _Data Model_ - The underlying structure of a database
+- _Relational Model_ The relational model uses a collection of tables to represent both data and the relationships among those data.
+- Tables are known as _Relations_
+- _Semi-Structured Data Model_ - Permits the specification of data where individual data items of the same type may have different sets of attributes. JSON and XXML are widely used in SSDM.
+- _Object Based Data Model_ - Encapsulates OO methods and object identity through stored procedures.
+- _Database Instance_ - The collection of information stored in a database at a particular moment.
+- _Schema_ - Overall design of the database.
+
+### 1.4 - Database Languages
+
+pg 13
+
+- _Data-Definition Language_ - Used to specify database schema.
+- _Data-Manipulation Language_ - Use to express database queries and updates.
+- _Domain Constraints_ - A domain of possible values must be associated with every attribute.
+- _Referential Integrity_ - When we wish to ensure that a value that appears in one relation for a given set of attributes also appears in a certain set of attributes in another relation.
+- _Authorization_ - Differentiate different user access.
+- _Procedural DML_ - Require a user to specify what data are needed and how to get those data.
+- _Declarative DML_ - Require a user to specify what data are needed without specifying how to get those data.
+- _Open Database Connectivity_ - Defines application program interfaces for use with C and several other programming languages.
+
+### 1.5 - Database Design
+
+pg 17

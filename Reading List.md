@@ -2,7 +2,7 @@
 -  [ ] GOF
 -  [x] Domain Driven Design, Eric Evans
 -  [x] Functional Design: Principles, Patterns, and Practices, Robert Cecil Martin
--  [ ] Patterns of Enterprise Application Architecture, Martin Fowler
+-  [x] Patterns of Enterprise Application Architecture, Martin Fowler
 - Database System Concepts, Silberschatz, Korth, and Sudarshan
 - The Art of Unit Testing, Roy Osherove
 - Designing Distributed Systems: Patterns and Paradigms for Scalable, Reliable Services Second Edition, Bredan Burns (recommended by Thomas, read near k8s learnings)
