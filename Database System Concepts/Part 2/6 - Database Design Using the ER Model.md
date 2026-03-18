@@ -10,3 +10,4 @@ pg 241
 - In designing a database schema, we must ensure that we avoid two major pitfalls:
 	- Redundancy - Repeating information. The biggest problem is that storing redundant information may cause inconsistency
 	- Incompleteness - A bad design may make certain aspects of the enterprise difficult or impossible to model
+
