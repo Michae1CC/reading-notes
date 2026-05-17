@@ -53,3 +53,4 @@ COMMIT;
 - under *Read Committed*, the second SELECT may return any data. A concurrent transaction may update the record, delete it, insert new records. The second select will always see new data.
 - under *Repeatable Read* the second SELECT is guaranteed to display at least the rows that were returned from the first SELECT unchanged. New rows may be added by a concurrent transaction in that one minute, but existing rows cannot be deleted nor changed
 - under *Serializable* reads the second select is guaranteed to see exactly the same rows as the first. No row can change, nor deleted, nor new rows could be inserted by a concurrent transaction
+- All isolation disallow *dirty writes*, that is they disallow writes to a data item that has already been written by another transaction that has not yet been committed or aborted
