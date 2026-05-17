@@ -7,6 +7,7 @@
 - The Art of Unit Testing, Roy Osherove
 - Designing Distributed Systems: Patterns and Paradigms for Scalable, Reliable Services Second Edition, Bredan Burns (recommended by Thomas, read near k8s learnings)
 - Test-Driven Development by Example, Kent Beck
+- The Art of Computer Programming, Knuth
 - Analysis Patterns, Martin Fowler
 - Head First Design Patterns, Newman and Robson
 - Working Effectively with Legacy Code, Michael C. Feathers
@@ -23,7 +24,6 @@
 - Analysis Patterns, Fowler
 - Structured Programming, Dijkstra
 - Object Oriented Software Construction, Meyer
-- The Art of Computer Programming, Knuth
 - Prometheus: Up & Running
 
 - Building good apps (I think linked in docker docs): https://12factor.net/processes
