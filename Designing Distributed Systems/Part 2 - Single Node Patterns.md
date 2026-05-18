@@ -5,3 +5,7 @@ pg 17
 - Reasons to split an application into multiple containers:
 	- Resource isolation
 	- separation of concerns
+
+pg 21
+
+- _sidecar container_ - augments and improve the application container
