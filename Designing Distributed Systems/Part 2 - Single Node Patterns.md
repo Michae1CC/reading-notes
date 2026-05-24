@@ -16,3 +16,7 @@ pg 31
 - The value of the _ambassador pattern_ is twofold:
 	- inherent value in building modular, reusable containers
 	- separation of concerns
+
+pg 56
+
+- A _readiness_ probe determines when an application is ready to serve user requests. They may need to connect to databases, load plugins, or download serving files from the network.
