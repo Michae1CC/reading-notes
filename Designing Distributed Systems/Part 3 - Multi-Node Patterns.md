@@ -41,3 +41,13 @@ http {
 	}
 }
 ```
+
+
+### Hot Shards
+
+pg 81
+
+- Ideally the load on a shard cache will be perfectly even, but in many cases this isn't true, and _hot shards_ appear because organic load patterns drive more traffic to one particular shard (for example a photo or video going viral)
+- If you set up auto scaling for each shard, you can dynamically grow and shrink each replicated shard as the organic traffic to your service shifts around
+- _scatter/gather_ pattern is a tree pattern with a root that distributes requests and leaves that process those requests. Requests  are simultaneously farmed out to all of the replicas in the system. Each replica does a small amount of processing and then returns a fraction of the result to root. The root server then combines the various partial results together to form a single complete response to the request and then sends this request back to the client
+- _scatter/gather_ is quite useful when you have a large amount of mostly independent processing that is needed to handle a particular request.
