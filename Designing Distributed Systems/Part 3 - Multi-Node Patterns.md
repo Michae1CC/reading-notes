@@ -51,3 +51,10 @@ pg 81
 - If you set up auto scaling for each shard, you can dynamically grow and shrink each replicated shard as the organic traffic to your service shifts around
 - _scatter/gather_ pattern is a tree pattern with a root that distributes requests and leaves that process those requests. Requests  are simultaneously farmed out to all of the replicas in the system. Each replica does a small amount of processing and then returns a fraction of the result to root. The root server then combines the various partial results together to form a single complete response to the request and then sends this request back to the client
 - _scatter/gather_ is quite useful when you have a large amount of mostly independent processing that is needed to handle a particular request.
+
+### Scatter/Gather with Root Distribution
+
+pg 84
+
+- Each leaf is entirely homogenous but the work is distributed to a number of different leaves in order to improve performance of a request - solves the "embarrassingly parallel" problem
+- Truly achieving a completely parallel speed-up on a single process is going to be tricky, as things like memory, network etc. become a bottle neck. Instead of parallelizing an application across cores on a single machine, we can use the scatter/gather pattern to parallize requests on a single machine.
