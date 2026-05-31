@@ -58,3 +58,33 @@ pg 84
 
 - Each leaf is entirely homogenous but the work is distributed to a number of different leaves in order to improve performance of a request - solves the "embarrassingly parallel" problem
 - Truly achieving a completely parallel speed-up on a single process is going to be tricky, as things like memory, network etc. become a bottle neck. Instead of parallelizing an application across cores on a single machine, we can use the scatter/gather pattern to parallize requests on a single machine.
+
+### Faas
+
+pg 92
+
+- It dramatically simplifies the distance from code to running service. Because there is no artifact to create or push beyond the source code itself, Faas makes it simple to go from code on a laptop of web browser to running code in the cloud.
+- Functions are stateless, and thus any system you build on top of functions is inherently more modular and decoupled than a similar system built into a single binary.
+
+#### Decorator pattern
+
+pg 95
+
+- Faas is ideal for deploying simple functions that can take an input, transform it into an output, and then pass it on to a different service
+- A good example to demonstrate the value of the decorator pattern is adding defaults to the input to an HTTP RESTful API
+- Consider the task of adding default values to a RESTful function call if the values are missing. We'll write the default function using the python programming language
+
+```python
+def handler(context):
+	# Get the input value
+	obj = context.json
+	# If the 'name' field is not present, set it randomly
+	if obj.get("name", None) is None:
+		obj["name"] = random_name()
+	# If the 'color' field is not present, set it to 'blue'
+	if obj.get("color", None) is None:
+		obj["color"] = "blue"
+	# Call the actual API, potentially with the new default
+	# values, and return the result
+	return call_my_api(obj)
+```
