@@ -88,3 +88,23 @@ def handler(context):
 	# values, and return the result
 	return call_my_api(obj)
 ```
+
+#### Handling Events
+
+pg 97
+
+- _Events_ tend to be single instance and async in nature. Need to be handled properly but they are fired off from a main interaction and responded to some time later
+- events tend to be largely independent and stateless in nature, and because the rate of events can be highly variable, they are ideal candidates for event-driven Faas architectures
+
+#### Event Pipelines
+
+pg 99
+
+- _Event Pipelines_ can be represented as a directed graph of connected events syncs
+- Each node is a different function or webhook, and the edges linking to graph together are HTTP or other network calls
+- In general, there is no shared state between the different pieces of the pipeline, but there may be context or other reference point that can be used to look up information in shared storage
+
+
+### Ownership Election
+
+pg 103
