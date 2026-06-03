@@ -105,7 +105,3 @@ pg 99
 - In general, there is no shared state between the different pieces of the pipeline, but there may be context or other reference point that can be used to look up information in shared storage
 
 
-### Ownership Election
-
-pg 103
-
