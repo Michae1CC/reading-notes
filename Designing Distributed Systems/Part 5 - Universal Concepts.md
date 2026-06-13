@@ -12,3 +12,10 @@ pg 159
 	- Histograms
 	- Counts
 	- Values
+- Though total requests count, the rate of requests, and latency are the most common and most generally useful metrics for monitoring requests to your server or service, there are more specialised metrics
+- The most basic form of alerting is based on metric queries and static thresholds
+
+pg 180
+
+- The absence of ay errors is more likely to indicate a serious problem rather than that everything is awesome
+- If you treat all unauthorised as "user errors" and you don't look for anomalies liek all user's failing authorization, you probably won't alert when you break your authorization code
