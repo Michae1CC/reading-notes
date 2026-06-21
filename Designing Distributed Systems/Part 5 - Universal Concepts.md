@@ -19,3 +19,4 @@ pg 180
 
 - The absence of ay errors is more likely to indicate a serious problem rather than that everything is awesome
 - If you treat all unauthorised as "user errors" and you don't look for anomalies liek all user's failing authorization, you probably won't alert when you break your authorization code
+- When we build our systems, we build in retry in order to handle when requests fail, but if we blindly retry when we see errors, we make the thundering herd worse. On the client side, the first way to handle this is to use exponential backoff
