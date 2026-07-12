@@ -5,7 +5,7 @@
 -  [x] Patterns of Enterprise Application Architecture, Martin Fowler
 - Database System Concepts, Silberschatz, Korth, and Sudarshan
 - The Art of Unit Testing, Roy Osherove
-- Designing Distributed Systems: Patterns and Paradigms for Scalable, Reliable Services Second Edition, Bredan Burns (recommended by Thomas, read near k8s learnings)
+-  [x] Designing Distributed Systems: Patterns and Paradigms for Scalable, Reliable Services Second Edition, Bredan Burns (recommended by Thomas, read near k8s learnings)
 - Continuous Delivery: Jez Humble
 - Test-Driven Development by Example, Kent Beck
 - The Art of Computer Programming, Knuth
