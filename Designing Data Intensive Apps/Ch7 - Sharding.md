@@ -19,3 +19,12 @@ pg 254
 	- Assumes that each individual tenant is small enough to fit on a single node
 	- You may have many small tenants, creating a separate shard for each one may incur too much overhead
 	- If you ever need to support features that connect data across multiple tenants these become harder to implement if you need to join across multiple tenants
+
+pg 261
+
+- _Hash-range sharding_ - If the required number of shards can't be predicted in advanced, it's better to use a scheme in which the number of shards can adapt easily to the workload. One solution is to combine key-range sharding with a hash function so that each shard contains a range of hash values rather than a range of keys
+
+pg 264
+
+- A system that defines shards based on ranges of keys makes it possible to put an individual hot key in a shard by itself
+- It's possible to compensate for skew at the application level. For example, if one key is known to be very hot, a simple technique is to add a random number to the beginning or end of the key. The volume of reads to each shard of the hot key is not reduced; only the write load is split. This also requires additional bookkeeping: it makes sense to append the random number for only a small number of hot keys; for the vast majority also need some way of keeping track of which keys with low write throughput, this would be unnecessary overhead.
