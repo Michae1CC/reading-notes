@@ -28,3 +28,8 @@ pg 264
 
 - A system that defines shards based on ranges of keys makes it possible to put an individual hot key in a shard by itself
 - It's possible to compensate for skew at the application level. For example, if one key is known to be very hot, a simple technique is to add a random number to the beginning or end of the key. The volume of reads to each shard of the hot key is not reduced; only the write load is split. This also requires additional bookkeeping: it makes sense to append the random number for only a small number of hot keys; for the vast majority also need some way of keeping track of which keys with low write throughput, this would be unnecessary overhead.
+
+pg 268
+
+- The partition key is the first part of the primary key, so we can use the partition key to determine the shard and thus route reads and writes to the node that is responsible for that key
+- A secondary index is usually doesn't identify a record uniquely but rather is a way of searching for occurrences of a particular value
