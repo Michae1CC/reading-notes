@@ -37,3 +37,7 @@ pg 268
 - When reading from a local secondary index, if you already know the partition key of the record you're looking for, you can just perform the search on the appropriate shard. Moreover, if you want all the results and don't need all of them, you can send a request to any shard. However, if you want all the results and don't know their partition key in advanced, you will need to send the query to all shards and combine their results you get back, because the matching records might be scattered across all the shards.
 - _Global Secondary Index_ or _Term-Partitioned_ - Rather than having each shard having its own local secondary index, we can construct an index that covers all data in the shards. A global index must also be sharded, but it can be sharded differently from the primary key.
 - Global Indexes have the advantage that a query with a single condition needs to read from only a single shard.
+
+https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.DesignPattern.MultiAttributeKeys.html
+
+- Dynamodb Global Secondary indexes support multi-attribute keys, allowing you to compose partition keys and sort keys from multiple attributes. With multi-attribute keys, you can create a partition key from up to four attributes and a sort key from up to four attributes, for a total of up to eight attributes per key schema
