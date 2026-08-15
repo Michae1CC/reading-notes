@@ -1,0 +1,6 @@
+
+pg 280
+- _Atomicity_ - If writes are grouped together into an atomic transaction, and the transaction cannot be completed because of a fault, then the transaction is aborted and the database must discard or undo any writes it has done so far. If a transaction is was aborted, the application can be sure that it didn't change anything, so it can safely be retried.
+- _Consistency_ - You have certain statements about your data that must always be true - for example, in an accounting system, credits and debits across all accounts must always be balanced. If a transaction starts with a database that is valid according to these invariants and any writes during the transaction preserve the validity - i.e. invariants are always satisfied.
+- _Isolation_ - Several client may be attempting reads/writes to the same part of the database. Isolation means that concurrently executing transactions are isolated from each other; they cannot step on each other's toes. Ensures that when the transactions have committed the result is the same as if they had run serially, even though they have run concurrently.
+- _Durability_ - A promise that after a transaction has been committed successfully any data it has written will not be forgotten, even if there is a hardware fault.
