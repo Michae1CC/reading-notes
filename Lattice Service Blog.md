@@ -63,10 +63,14 @@ A new solution for a public web request entry point was given the following requ
 - Nginx Cluster used to modify request structure and to proxy the request to the correct VPC Lattice Service
 - VPC Lattice Service Network layer to route requests to their respective backend
 
+1. A Multi-Tenant Distribution to act as a public endpoint for all backend traffic. A Distribution Tenant is created for each customer with each Tenant Distribution being provided its own domain.
+2. An Nginx cluster connects the Distribution for the VPC Lattice Service Network. The cluster is used to modify the request payload and proxy requests to the correct VPC Lattice Service. The Nginx cluster targets the VPC Lattice Service to proxy requests to by using the default domain name that VPC Lattice Service prescribes.
+3. VPC Lattice Service abstracts deployments across different accounts and VPCs and shuttles requests to appropriate backend. A single VPC Lattice Service Network is shared from a central networking account to all accounts with backend that need to register to Frontdoor. These accounts are able to create VPC Lattice Service that are associated with the shared VPC Lattice Service Network.
+
 #### How it works
 
 - Each customer tenant is provided with their own SaaS domain. The tenant may then access each of their SaaS services through their domain
-- Talk about cfn to provision app group resources
+- Talk about cfn to provision app group resources?
 - Talk about RAM to share LSN and register LS
 - Talk about kvs mapping and Nginx proxy
 
