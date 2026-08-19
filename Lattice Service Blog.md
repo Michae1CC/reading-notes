@@ -32,7 +32,7 @@ Short comings
 **Paragraphed**
 Previously, Deswik used a single Application Load Balancer as a public entry point for customer web requests. In this implementation, all customers would access a service deployed behind the Application Load Balancer by using a unique path prefix for said service. The path prefix is then used by an Application Load Balancer Listener Rule with a query string condition which directed requests to the appropriate backend.
 
-This provided a very cost efficient and easily maintainable solution while only a select number of customers had cloud deployments. With an increasing demand for SaaS offerings by customer, a number of shortcoming have become evident:
+This provided a very cost efficient and easily maintainable solution while only a small number of customers had cloud deployments. With an increasing demand for SaaS offerings by Deswik customers, a number of shortcoming become evident:
 - There is a limit of 100 Load Balancer Conditions per Application Load Balancer
 - Services must be created in the same VPC as the Application Load Balancer
 - All customers are forced into a multi-tenancy deployment
@@ -51,7 +51,7 @@ This provided a very cost efficient and easily maintainable solution while only 
 
 **Paragraphed**
 A new solution for a public web request entry point was given the following requirements to address the shortcoming of the old architecture:
-- Must be able to front an order of ten's of thousands of private backends
+- Must be able to front private backends numbered in the ten's of thousands
 - Must offer a single tenancy option.
 - New Deswik cloud offerings that have followed a lift and shift strategy must easily integrate with the new solution.
 - Should be able to route requests to VPCs within a different account.
@@ -72,7 +72,7 @@ Todo: SOULTION IMAGE
 3. A single VPC Lattice Service Network is shared from a central networking account to all accounts with backend that need to register to Frontdoor. These accounts are able to create VPC Lattice Service that are associated with the shared VPC Lattice Service Network.
 4. VPC Lattice Service abstracts deployments across different accounts and VPCs and shuttles requests to appropriate backend. 
 
-#### How it works
+#### How it works/Request Flow
 
 **DPs**
 - Each customer tenant is provided with their own SaaS domain. The tenant may then access each of their SaaS services through their domain
@@ -88,10 +88,13 @@ Todo: REQUEST FLOW IMAGE
 - The client performs a DNS lookup for a custom domain name provided to their organization.
 - The client will access a product deployment for their organization by prefixing HTTP request paths with the product identifier, for example `https://example.deswik.app/product1`.
 - Each Distribution has a Cloudfront Function which contains a key-value-store mapping from tenant subdomain and product identifier to the VPC Lattice Service domain for the product deployment. Once the request reaches the distribution, the Cloudfront Function adds a custom header of the VPC Lattice Service domain the request is intended for.
-- Once the Nginx cluster receives the request, it proxies the request to the intended VPC Lattice Service using the aforementioned custom header.
-- The VPC Lattice Service performs most of the routing heavy lifting by forwarding the request to the intended backend which is deployed in a separate VPC and AWS account. 
+- Once the Nginx cluster receives the request, it proxies the request to the intended VPC Lattice Service using the aforementioned custom header. Route53 is used by Nginx to resolve the destination address, that is, the VPC Lattice Network VPC Association.
+- The VPC Lattice Service performs most of the routing heavy lifting by forwarding the request to the intended backend which is deployed in a separate VPC and AWS account.
 
-Todo: Talk about how much better we can scale with this approach
+_TODO_: Talk about how much better we can scale with this approach
+
+There is a soft quota maximum of 10,000 distribution tenants for each account and 2,000 VPC Lattice Services per region allowing us to scale to backends in the tens of thousands across the organization. This also allows backend deployments to register to the central Lattice Service Network from a different VPC within another account. 
+
 #### Accessing a HTTPS service/Traffic Flows
 
 **DPs**
