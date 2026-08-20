@@ -56,12 +56,10 @@ Todo: REQUEST FLOW IMAGE
 - Once the Nginx cluster receives the request, it proxies the request to the intended VPC Lattice Service using the aforementioned custom header. Amazon Route 53 is used by Nginx to resolve the destination address, that is, the VPC Lattice Network VPC Association.
 - The VPC Lattice Service performs most of the routing heavy lifting by forwarding the request to the intended backend which is deployed in a separate VPC and AWS account.
 
-_TODO_: Talk about how much better we can scale with this approach
-
 There is a soft quota maximum of 10,000 distribution tenants for each account and 2,000 VPC Lattice Services per region allowing us to scale to backends in the tens of thousands across the organization. This also allows backend deployments to register to the central Lattice Service Network from a different VPC within another account.
 
 ## Conclusion
 
 By building Frontdoor on Amazon CloudFront and Amazon VPC Lattice, Deswik replaced a single Application Load Balancer that was approaching its listener and rule limits with a centralized, standardized ingress layer that scales to backends in the tens of thousands. The new architecture removes the constraints of the previous design: backends no longer need to live in the same VPC as the entry point, deployments can be routed across separate VPCs and AWS accounts, and customers can be served through either multi-tenant or single-tenant models. Just as importantly, product teams are insulated from the underlying routing and infrastructure details, allowing them to onboard a new deployment by simply registering a VPC Lattice Service with the shared service network.
 
-For organizations running a growing portfolio of services across many accounts and VPCs, Amazon VPC Lattice provides a powerful abstraction layer for delivering secure, scalable, and consistent service-to-service connectivity without the operational overhead of managing IP-based networking. To learn more and get started, see the Amazon VPC Lattice documentation.
+For organizations running a growing portfolio of services across many accounts and VPCs, Amazon VPC Lattice provides a powerful abstraction layer for delivering secure, scalable, and consistent service-to-service connectivity without the operational overhead of managing IP-based networking.
