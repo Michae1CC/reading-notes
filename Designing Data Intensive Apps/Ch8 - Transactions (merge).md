@@ -16,3 +16,13 @@ pg 290
 - No dirty reads which means that any writes by a transaction become visible to others only when that transaction commits
 - Dirty writes happens when an earlier write that is part of a transaction has not yet committed and a later write overwrites an uncommitted value. Transactions running at the read-committed isolation level must prevent dirty writes.
 - Databases prevent dirty writes by using row-level locks. When a transaction want to modify a particular row, it must first acquire a lock on that row. It must hold that lock until the transaction is committed or aborted. Only one transaction can hold the lock for any given row.
+
+
+#### Multiversion Concurrency Control
+
+pg 295
+
+- Snapshot Isolation - each transaction reads from a consistent snapshot of the database - that is, it sees all the data that was committed in the database at the start of that. Even if the data is subsequently changed by another transaction, each transaction sees only the old data from that particular point in time.
+- Implementations of snapshot isolation typically use write locks to prevent dirty writes, which means that a transaction that makes a write can block the progress of another transaction that writes to the same row
+- Reads do not require any locks
+- The database must potentially keep several committed versions of a row, because various in-progress transactions may need to see the state of the database at different points in time.
