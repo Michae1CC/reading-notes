@@ -22,7 +22,17 @@ pg 290
 
 pg 295
 
-- Snapshot Isolation - each transaction reads from a consistent snapshot of the database - that is, it sees all the data that was committed in the database at the start of that. Even if the data is subsequently changed by another transaction, each transaction sees only the old data from that particular point in time.
+- Snapshot Isolation - each transaction reads from a consistent snapshot of the database - that is, it sees all the data that was committed in the database at the start of that. Even if the data is subsequently changed by another transaction, each transaction sees only the old data from that particular point in time. aka. "Repeatable Read", "Serializable"
 - Implementations of snapshot isolation typically use write locks to prevent dirty writes, which means that a transaction that makes a write can block the progress of another transaction that writes to the same row
 - Reads do not require any locks
 - The database must potentially keep several committed versions of a row, because various in-progress transactions may need to see the state of the database at different points in time.
+
+#### Preventing Lost Updates
+
+pg 299
+
+- The lost updates problem can occur if an application reads a value from the database, modifies it, and writes it back the modified value. If two transactions do this concurrently, one of the modifications can be lost.
+- Atomic write operations - Many databases provide atomic update operations, which remove the need to implement read-modify-write cycles in application code. They are usually the best solution if your code can be expressed in terms of those operations.
+- For example: `UPDATE counters SET value = value + 1 WHERE key = 'foo'`
+- Explicit Locking - If the databases built-in atomic operations don't provide the necessary functionality, is for the application to explicitly lock objects that are going to be updated. Then the application can perform a read-modify-write cycle, and if any other transactions tries to concurrently update or lock the same object, it is forced to wait until the first read-modify-write cycles has completed.
+- Automatically detecting lost updates - Atomic operations and locks are ways of preventing lost updates by forcing the read-modify-write cycles to happen sequentially. An alternative is to allow them to execute in parallel and, if the transaction manager detects a lost update, abort the transaction in question and force it to retry its read-modify-write cycle. Doesn't require application code to use any special database features. You have to retry aborted transactions at the application level.
