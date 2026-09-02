@@ -36,3 +36,12 @@ pg 299
 - For example: `UPDATE counters SET value = value + 1 WHERE key = 'foo'`
 - Explicit Locking - If the databases built-in atomic operations don't provide the necessary functionality, is for the application to explicitly lock objects that are going to be updated. Then the application can perform a read-modify-write cycle, and if any other transactions tries to concurrently update or lock the same object, it is forced to wait until the first read-modify-write cycles has completed.
 - Automatically detecting lost updates - Atomic operations and locks are ways of preventing lost updates by forcing the read-modify-write cycles to happen sequentially. An alternative is to allow them to execute in parallel and, if the transaction manager detects a lost update, abort the transaction in question and force it to retry its read-modify-write cycle. Doesn't require application code to use any special database features. You have to retry aborted transactions at the application level.
+
+#### Write Skew and Phantoms
+
+pg 303
+
+General pattern
+- A `SELECT` query checks whether a requirement is satisfied by searching for rows that match a search condition
+- Depending on the result of the first query, the application code decides how to continue
+- If the application decides to go ahead, it makes a write (`INSERT`, `UPDATE` or `DELETE`) to the database and commits the transaction. The effect of this write changes the precondition of the descision of step 2. In other words, if you were to repeat the `SELECT` query from step 1 after committing the write, you would get a different result, because the write changed the set of rows matching the search condition.
