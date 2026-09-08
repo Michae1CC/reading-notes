@@ -11,13 +11,12 @@ Deswik is a global mining software company delivering a growing portfolio of clo
 
 Before reading on, you should be familiar with the following concepts:
 - Amazon's Virtual Private Cloud offering
-- Multi-tenant CloudFront distributions and CloudFront Functions
-- EC2, Elastic Load Balancers and Amazon Auto-Scaling Groups
+- Familiarity with CloudFront concepts distributions and CloudFront Functions
 - Amazon VPC Lattice product and concepts, namely: VPC Lattice Services, VPC Lattice Service Associations, VPC Lattice Service Networks
 
 ## Previous State Architecture
 
-Previously, Deswik used a single Application Load Balancer as a public entry point for customer web requests. In this implementation, all customers would access a backend deployed behind the Application Load Balancer by using a unique path prefix for said backend. The path prefix is then used by an Application Load Balancer Listener Rule with a query string condition which directed requests to the appropriate backend.
+Deswik used a single AWS Application Load Balancer (ALB) as a public entry point for customer web requests. In this implementation, all customers would access a backend deployed behind the AWS ALB by using a unique path prefix for said backend. The path prefix is then used by an Application Load Balancer Listener Rule with a query string condition which directed requests to the appropriate backend.
 
 Todo: PREVIOUS SOLUTION IMAGE
 
