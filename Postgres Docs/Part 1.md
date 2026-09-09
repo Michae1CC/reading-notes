@@ -23,7 +23,7 @@ CREATE TABLE weather (
 ```
 
 
-`DROP TABLE tablename` - Removes a table
+`DROP TABLE tablename` - Remove a table
 
 
 `INSERT` - Used to populate a table with rows
