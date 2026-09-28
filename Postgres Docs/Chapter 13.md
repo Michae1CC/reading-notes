@@ -11,3 +11,10 @@ https://www.postgresql.org/docs/current/transaction-iso.html
 - To set the transaction isolation level of a transaction, use the command `SET TRANSACTION`
 
 - Read commit is the default isolation level. When a transaction uses this isolation level, a `SELECT` query sees only data committed before the query began; it never sees either uncommitted data or changes committed by concurrent transactions during the query's execution. In effect, a `SELECT` query sees a snapshot of the database as of the instance the query begins to run.
+- However, `SELECT` does see different data, even though they are within a single transaction, if other transactions commit changes after the first `SELECT` starts and before the second `SELECT` starts.
+
+- Repeatable Read isolation level only sees data committed before the transaction began; it never sees either uncommitted data or changes committed by concurrent transactions during the transaction's execution.
+
+- Serializable Isolation - emulates serial transaction execution for all committed transaction; as if transactions has been executed one after another, serially, rather than concurrently.
+
+https://www.postgresql.org/docs/current/explicit-locking.html
