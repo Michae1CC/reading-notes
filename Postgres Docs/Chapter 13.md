@@ -17,4 +17,7 @@ https://www.postgresql.org/docs/current/transaction-iso.html
 
 - Serializable Isolation - emulates serial transaction execution for all committed transaction; as if transactions has been executed one after another, serially, rather than concurrently.
 
-https://www.postgresql.org/docs/current/explicit-locking.html
+https://www.postgresql.org/docs/current/applevel-consistency.html
+
+- Read/Write conflicts - if one transaction writes data and a concurrent transaction attempts to read the same data, it cannot see the work of the other transaction. The reader then appears to have executed first regardless of which started first or which committed first. If the reader also writes data which is read by a concurrent transaction there is now a transaction which appears to have run before either of the previously mentioned transactions.
+- If the Serializable transaction isolation level is used for all writes and for all readds which need a consistent view of the data, no other effort is required to ensure consistency.
