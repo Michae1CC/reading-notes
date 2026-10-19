@@ -37,3 +37,23 @@ SELECT name FROM test2 WHERE major = constant AND minor = constant;
 CREATE INDEX test2_mm_idx ON test2 (major, minor);
 ```
 - Only B-tree, GiST, GIN and BRIN index types support multiple-key-column indexes
+
+
+### Indexes and `ORDER BY`
+
+- Only B-tree can produce sorted output - the other index types return matching rows in an unspecified, implementation-dependent order
+- By default, B-tree indexes store their entries in ascending order with nulls last. This means that a forward scan of an index on a column `x` produces output satisfying `ORDER BY x ASC NULLS LAST`
+
+### Combining Multiple Indexes
+
+- A single index scan can only use query clauses that use the index's columns with operators class and are joined with `AND`
+- Postgres has the ability to combine multiple indexes to handle cases that cannot be implemented by a single index scans. The system can form `AND` and `OR` conditions across several index scans. For example, a query like `WHERE x = 42 OR x = 47 OR x = 53 OR x = 99` could be broken down into four separate scans of an index on `x`, each scan using one of the query clauses. The results of these scans are then ORed together to produce the result
+
+### Unique Indexes
+
+- Indexes can also be used to enforce uniqueness of a column's value, or the uniqueness of the combined values of more than one column
+- Only B-tree indexes can be declared unique
+- When an index is declared unique, multiple rows with equal indexed values are not allowed
+- Null values values in a unique column are not considered equal, allowing multiple nulls in the column
+- The `NULLS NOT DISTINCT` option modifies this and causes the index to treat nulls as equal
+- PostgreSQL automatically creates a unique index when a unique constraint or primary key is defined for a table. The index covers the columns that make up the primary key or unique constraint and is the mechanism that enforces the constraint
