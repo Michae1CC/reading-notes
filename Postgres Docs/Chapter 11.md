@@ -57,3 +57,30 @@ CREATE INDEX test2_mm_idx ON test2 (major, minor);
 - Null values values in a unique column are not considered equal, allowing multiple nulls in the column
 - The `NULLS NOT DISTINCT` option modifies this and causes the index to treat nulls as equal
 - PostgreSQL automatically creates a unique index when a unique constraint or primary key is defined for a table. The index covers the columns that make up the primary key or unique constraint and is the mechanism that enforces the constraint
+
+### Index on expressions
+
+- An index column need not be just a column of the underlying table, but can be a function or scalar expression computed from one or more columns of the table
+- This feature is useful to obtain fast access to tables based on the results of computations
+
+### Partial Indexes
+
+- A partial index is an index built over a subset of a table; the subset is defined by a conditional expression
+- One major reason for using a partial index is to avoid indexing common values
+- Since a query searching for a common value will not use the index anyway, there is no point in keeping those rows in the index at all. This reduces the size of the index, which will speed up the queries that do use the index. It will also speed up many table update operations because the index does not need to be updated in all cases
+- To create a partial index
+```sql
+CREATE INDEX access_log_client_ip_ix ON access_log (client_ip)
+WHERE NOT (client_ip > inet '192.168.100.0' AND
+		   client_ip < inet '192.168.100.255');
+```
+- A typical query using this index
+```sql
+SELECT *
+FROM access_log
+WHERE url = '/index.html' AND client_ip = inet '212.78.10.32';
+```
+
+### Index only scans
+
+- All indexes in PostgreSQL are secondary indexes, meaning that each index is stored separately from the tables main data area. This means that in an ordinary index scan, each row retrieval requires fetching data from both the index and the heap
