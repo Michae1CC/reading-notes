@@ -33,3 +33,8 @@ https://www.postgresql.org/docs/19/runtime-config-connection.html
 - `tcp_keepalives_interval` - Specifies the amount of time after which a TCP keepalive message that has not been acknowledged by the client should be retransmitted
 - `tcp_user_timeout` - Specifies the amount of time that transmitted data may remain unacknowledged before the TCP connection is forcibly closed
 - `client_connection_check_interval` - Sets the time interval between optional checks that the client is still connected, while running queries. The check is performed by polling the socket and allows long running queries to be aborted sooner if the kernel reports that the connection is closed
+
+https://www.postgresql.org/docs/19/runtime-config-resource.html
+
+- `shared_buffers` - Sets the amount of memory the database server uses for shared memory buffers. The default is typically 128 MB
+- There is a separate server process called the _background writer_, whose function is to issue writes of "dirty" shared buffers. When the number of clean shared buffers appears to be insufficient, the background writer writes some dirty buffers to the file system and marks them as clean. This reduces the likelihood that server processes handling user queries will be unable to find clean buffers and have to write to dirty buffers themselves
