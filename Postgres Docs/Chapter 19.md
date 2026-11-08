@@ -38,3 +38,7 @@ https://www.postgresql.org/docs/19/runtime-config-resource.html
 
 - `shared_buffers` - Sets the amount of memory the database server uses for shared memory buffers. The default is typically 128 MB
 - There is a separate server process called the _background writer_, whose function is to issue writes of "dirty" shared buffers. When the number of clean shared buffers appears to be insufficient, the background writer writes some dirty buffers to the file system and marks them as clean. This reduces the likelihood that server processes handling user queries will be unable to find clean buffers and have to write to dirty buffers themselves
+
+https://www.postgresql.org/docs/19/runtime-config-wal.html
+
+- `wal_level` - Determines how much information is written to the WAL. The default value is `replica`, which writes enough data to support WAL archiving and replication. `minimal` removes all logging except the information required to recover from a crash or immediate shutdown. Logical adds information necessary to support logical decoding
