@@ -50,3 +50,12 @@ General pattern
 - A `SELECT` query checks whether a requirement is satisfied by searching for rows that match a search condition
 - Depending on the result of the first query, the application code decides how to continue
 - If the application decides to go ahead, it makes a write (`INSERT`, `UPDATE` or `DELETE`) to the database and commits the transaction. The effect of this write changes the precondition of the descision of step 2. In other words, if you were to repeat the `SELECT` query from step 1 after committing the write, you would get a different result, because the write changed the set of rows matching the search condition.
+
+#### Two Phase Locking (2PL)
+
+- Several transactions are allowed to concurrently read the same object as long as nobody is writing to it
+- As soon as anyone wants to write an object, exclusive access is required:
+	- If transaction A has read an object and transaction B wants to write to that object, B must wait until A commits or aborts before it can continue
+	- If transaction A has written an object and transaction B wants to read that object, B must wait until A commits or aborts before it can continue
+- In 2PL, writers don't just block other writers; they also block other readers and vice-versa
+- Because 2PL provides serializability, it protects against all the race conditions discussed eariler, including lost updates and write skew
